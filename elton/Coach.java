@@ -76,4 +76,8 @@ public class Coach
     }  
   
    }
+  public ArrayList<int[]> getFrequency()
+  {
+   return frequency; 
+  }  
 }
