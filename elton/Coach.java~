@@ -17,16 +17,11 @@ public class Coach
   }  
   public Session add(String n)
   {
-   session.AddMember(n); 
-   return sessiion;
+   //session.AddMember(n); 
+   return session;
     
   } 
-  /*public static sendMsg(String n,String n)
-  //{
-  
-  
-  
-  //}*/
+ 
   public int getSessionID()
   {
    return sessionID; 
@@ -38,9 +33,10 @@ public class Coach
     return session;
   
   }
-  public  setSession(Session s)
+  public void setSession(Session s)
   {
   session= s;
    
     
-  }  
+  } 
+}
