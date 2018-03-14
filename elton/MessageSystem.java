@@ -18,5 +18,13 @@ public class MessageSystem
     String[] temp = {name,message};
     messages.add(temp);
   }
+  public void ShowMessages(String name)
+  {
+   for(int x=0;x<messages.size();x++)
+   {
+     if(messages.get(x)[0]==name)
+     System.out.println(messages.get(x)[1]);
+   }
+  } 
   
 }

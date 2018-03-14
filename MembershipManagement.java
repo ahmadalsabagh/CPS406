@@ -15,9 +15,12 @@ public class MembershipManagement{
       
       sessions.add(new Session(i));
     }
-    
-    
-    System.out.println("Hello World!");
+    //test:How to use MessageSystem
+    messageSystem.CreateMessage("Elton","Practice on Thursday Be There or be Square");
+     messageSystem.CreateMessage("Elton","Can u Switch Shifts with me");
+      messageSystem.CreateMessage("Ahmad","Pay ur Fucking Bills");
+      messageSystem.ShowMessages("Elton");
+    //end of Test
     
   }
   
