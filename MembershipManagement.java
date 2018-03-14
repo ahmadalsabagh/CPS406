@@ -3,7 +3,7 @@ import java.util.*;
 public class MembershipManagement{
   
   private List<Session> sessions = new ArrayList<Session>();
- private HashMap<String,int[]> memberPaid;
+  private HashMap<String,int[]> memberPaid;
   //private List<Coach> coaches = new ArrayList<Coach>();
   
   public static void main(String args[]){
@@ -22,12 +22,12 @@ public class MembershipManagement{
   
   public ArrayList<String> organizeByPayments(boolean order){
     //2d array create
-    int[][] temp; 
+    String[][] temp; 
     //array of 2 integers, paid & not paid
     int[] paidOrNot = {0,0};
     memberPaid = new HashMap<String,int[]>();
     for (int i = 0; i < sessions.size(); i++){
-      temp = sessions.get(i).getMemberReportInfo();
+      temp = sessions.get(i).GetMemberReportInfo();
       //loop thru 2d array
       for (int x = 0; x < temp.length; x++){
         if (memberPaid.containsKey(temp[x][0])){
@@ -52,59 +52,59 @@ public class MembershipManagement{
         }
       }
     }
-  if (order){
-    //look for the highest key (name) of paid, second highest of paid....etc.
-    HashMap<String,int[]> tempMap;
-    tempPaid = memberPaid;
-    ArrayList<String> orderedPaid = new ArrayList<String>(); 
-    for (int i = 0; i < tempMap.size(); i++){
-      int highestVal = -1;
-      String highestKey = "";
-      Iterator it = tempMap.entrySet().iterator();
-      while (it.hasNext()) {
-        Map.Entry pair = (Map.Entry)it.next();
-        if (pair.getValue()[0] > highestVal){
-          highestVal = pair.getValue()[0];
-          highestKey = pair.getKey(); //cast to String
+    if (order){
+      //look for the highest key (name) of paid, second highest of paid....etc.
+      HashMap<String,int[]> tempMap;
+      tempMap = memberPaid;
+      ArrayList<String> orderedPaid = new ArrayList<String>(); 
+      for (int i = 0; i < tempMap.size(); i++){
+        int highestVal = -1;
+        String highestKey = "";
+        
+        for (String key : tempMap.keySet()){
+          //iterate over key
+          //System.out.println(key+" "+mp.get(key));
+          if (tempMap.get(key)[1] > highestVal){
+            highestVal = tempMap.get(key)[1];
+            highestKey = key; //cast to String
+          } 
         }
-        it.remove(); // avoids a ConcurrentModificationException
+        orderedPaid.add(highestKey);
+        tempMap.remove(highestKey);
       }
-      orderedPaid.add(highestKey);
-      tempMap.remove(HighestKey);
-    }
-    return orderedPaid;
-  }else{
-    //look for the highest value of not paid, second highest of not paid... etc.
-    HashMap<String,int[]> tempMap;
-    tempPaid = memberPaid;
-    ArrayList<String> orderedNotPaid = new ArrayList<String>(); 
-    for (int i = 0; i < tempMap.size(); i++){
-      int highestVal = -1;
-      String highestKey = "";
-      Iterator it = tempMap.entrySet().iterator();
-      while (it.hasNext()) {
-        Map.Entry pair = (Map.Entry)it.next();
-        if (pair.getValue()[1] > highestVal){
-          highestVal = pair.getValue()[1];
-          highestKey = pair.getKey();
+      return orderedPaid;
+    }else{
+      //look for the highest value of not paid, second highest of not paid... etc.
+      HashMap<String,int[]> tempMap;
+      tempMap = memberPaid;
+      ArrayList<String> orderedNotPaid = new ArrayList<String>(); 
+      for (int i = 0; i < tempMap.size(); i++){
+        int highestVal = -1;
+        String highestKey = "";
+        
+        for (String key : tempMap.keySet()){
+          //iterate over key
+          //System.out.println(key+" "+mp.get(key));
+          if (tempMap.get(key)[0] > highestVal){
+            highestVal = tempMap.get(key)[0];
+            highestKey = key; //cast to String
+          } 
         }
-        it.remove(); // avoids a ConcurrentModificationException
+        orderedNotPaid.add(highestKey);
+        tempMap.remove(highestKey);
       }
-      orderedNotPaid.add(highestKey);
-      tempMap.remove(HighestKey);
+      return orderedNotPaid;
     }
-    return orderedNotPaid;
+    
   }
   
-}
-
-public void missedPayments(){
-  /*//If the member has not paid more than once, then he will be subject to a penalty fee and possibly exclusion from the group.
-  ArrayList<String> notPaid = organizeByPayments(false)
-    for(x=0;x<notPaid.
-  //A reminder will be sent for any member who has skipped at least one payment.
+  public void missedPayments(){
+    /*//If the member has not paid more than once, then he will be subject to a penalty fee and possibly exclusion from the group.
+     ArrayList<String> notPaid = organizeByPayments(false)
+     for(x=0;x<notPaid.
+     //A reminder will be sent for any member who has skipped at least one payment.
+     
+     //If the member does not skip a payment for 3 months, he will receive a complimentary discount for 10% off for one class.*/
+  }
   
-  //If the member does not skip a payment for 3 months, he will receive a complimentary discount for 10% off for one class.*/
-}
-
 }
