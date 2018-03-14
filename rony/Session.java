@@ -5,6 +5,7 @@ import java.util.ArrayList;
  */
 public class Session
 {
+   
     private int month;
     private String[][] members = null;
 

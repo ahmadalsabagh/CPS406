@@ -13,7 +13,7 @@ public class MessageSystem
   {
     this.messages=messages;
   }
-  public void CreateMessage(String name,String message)
+  public void CreateMessage(String message,String name)
   {
     String[] temp = {name,message};
     messages.add(temp);
