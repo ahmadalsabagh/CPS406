@@ -2,22 +2,23 @@ import java.util.*;
 
 public class MembershipManagement{
   
-  private List<Session> sessions = new ArrayList<Session>();
+  private List<Session> sessions;
   private HashMap<String,int[]> memberPaid;
   //private List<Coach> coaches = new ArrayList<Coach>();
   
   public static void main(String args[]){
     
+    List<Session> sessions = new ArrayList<Session>();
     for (int i = 0; i < 12; i++){
       
       sessions.add(new Session(i));
     }
     
     
-    
     System.out.println("Hello World!");
     
   }
+  
   
   
   public ArrayList<String> organizeByPayments(boolean order){
