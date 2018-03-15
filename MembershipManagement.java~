@@ -4,18 +4,23 @@ public class MembershipManagement{
   
   private List<Session> sessions;
   private HashMap<String,int[]> memberPaid;
+   private MessageSystem messageSystem;
   //private List<Coach> coaches = new ArrayList<Coach>();
   
   public static void main(String args[]){
     
     List<Session> sessions = new ArrayList<Session>();
+    MessageSystem messageSystem = new MessageSystem();
     for (int i = 0; i < 12; i++){
       
       sessions.add(new Session(i));
     }
-    
-    
-    System.out.println("Hello World!");
+    //test:How to use MessageSystem
+    messageSystem.CreateMessage("Elton","Practice on Thursday Be There or be Square");
+     messageSystem.CreateMessage("Elton","Can u Switch Shifts with me");
+      messageSystem.CreateMessage("Ahmad","Pay ur Fucking Bills");
+      messageSystem.ShowMessages("Elton");
+    //end of Test
     
   }
   
@@ -106,6 +111,11 @@ public class MembershipManagement{
      //A reminder will be sent for any member who has skipped at least one payment.
      
      //If the member does not skip a payment for 3 months, he will receive a complimentary discount for 10% off for one class.*/
+  }
+  public void createMessage(String name,String message)
+  {
+    messageSystem= new MessageSystem();
+    messageSystem.CreateMessage(name,message);
   }
   
 }
