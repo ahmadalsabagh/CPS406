@@ -213,7 +213,15 @@ public class MembershipManagement{
      *
      */
     public static ArrayList<MemberFee> applyDiscount(ArrayList<MemberFee> newFees){
-        //if the member did not skip 3 months
+      //if the member did not skip 3 months
+      HashMap<String, int[]> members = memberPayments();
+       //iterate over key
+      for (String key : members.keySet()){
+        if (members.get(key)[0] >= 3 && members.get(key)[1]){
+          fees.applyConsecDiscount(10.0);
+        }
+      }
+      
         //then
         //fee.applyDiscount(10) 10 percent
 
