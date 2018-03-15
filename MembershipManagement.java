@@ -129,9 +129,9 @@ public class MembershipManagement{
    * */
   public void missedPayments(){
     //If the member has not paid more than once, then he will be subject to a penalty fee and possibly exclusion from the group.
-    HashMap<String,int[]> members = memberPayments;
+    HashMap<String,int[]> members = memberPayments();
     for (String key : members.keySet()){
-      if (tempMap.get(key)[1] > 1 /*&&  SOMETHING */ ){
+      if (members.get(key)[1] > 1 /*&&  ???????SOMETHING?????? */ ){
         //create fee
       } 
       //A reminder will be sent for any member who has skipped at least one payment.
@@ -147,7 +147,7 @@ public class MembershipManagement{
    * //////////////////////////////RONY WRITE THE SUMMARY OF THIS METHOD HERE///////////////////////
    * @return and write what it is returning
    * */
-  private HashMap<String, Integer> UpdatePaymentsDue() {
+  /*private HashMap<String, Integer> UpdatePaymentsDue() {
     String[][] temp;
     
     memberPaid = new HashMap<String, Integer>();
@@ -162,7 +162,7 @@ public class MembershipManagement{
     }
     
     return  memberPaid;
-  }
+  }*/
   
   
   /*

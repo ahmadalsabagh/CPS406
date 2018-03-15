@@ -1,31 +1,31 @@
 public class MemberFee{
   
-  private int fee;
+  private double fee;
   private String name;
   
-  public MemberFee(int fee, String name){
+  public MemberFee(double fee, String name){
     this.fee = fee;
     this.name = name;
   }
   
-  public void incrementFee(int n){
-    this.fee = this.fee + n;
+  public void incrementFee(double n){
+    this.fee =+ n;
   }
   
-  public void decrementFee(int n){
-    this.fee = this.fee - n;
+  public void decrementFee(double n){
+    this.fee =- n;
   }
   
-  public void applyDiscount(int n){
-    int price = n/100;
-    this.fee = this.fee - (price* this.fee);
+  public void applyDiscount(double n){
+    double price = n/100;
+    this.fee =- (price * this.fee);
   }
   
-  public int getFee(){
+  public double getFee(){
     return this.fee;
   }
   
-  public void setFee(int n){
+  public void setFee(double n){
     this.fee = n;
   }
   
