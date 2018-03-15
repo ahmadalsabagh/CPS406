@@ -217,7 +217,7 @@ public class MembershipManagement{
       HashMap<String, int[]> members = memberPayments();
        //iterate over key
       for (String key : members.keySet()){
-        if (members.get(key)[0] >= 3 && members.get(key)[1]){
+        if (members.get(key)[0] >= 3 && members.get(key)[1] == 0){
           fees.applyConsecDiscount(10.0);
         }
       }
