@@ -137,7 +137,7 @@ public class MembershipManagement{
       if (members.get(key)[1] > 1){
         for (int i = 0; i < fees.size(); i++){
           if (fees.get(i).getName == key){
-            fees.get(i).incrementFee(10.0);
+            fees.get(i).applyPenalty(10.0);
             found = true;
           }
         }

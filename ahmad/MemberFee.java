@@ -2,6 +2,8 @@ public class MemberFee{
   
   private double fee;
   private String name;
+  private boolean isPenalty = false;
+  private boolean consecApplied = false;
   
   public MemberFee(double fee, String name){
     this.fee = fee;
@@ -17,8 +19,18 @@ public class MemberFee{
   }
   
   public void applyDiscount(double n){
-    double price = n/100;
-    this.fee =- (price * this.fee);
+    if (!consecApplied){
+      double price = n/100;
+      this.fee =- (price * this.fee);
+      consecApplied = true;
+    }
+  }
+  
+  public void applyPenalty(double n){
+    if (!isPenalty){
+      incrementFee(n);
+      isPenalty = true;
+    }
   }
   
   public double getFee(){
@@ -31,5 +43,13 @@ public class MemberFee{
   
   public String getName(){
     return this.name;
+  }
+  
+  public double makePayment(){
+    double temp = this.fee;
+    isPenalty = false;
+    consecApplied = false;
+    this.fee = 0;
+    return temp;
   }
 }
