@@ -2,7 +2,8 @@ import java.util.*;
 
 public class MembershipManagement{
   
-  private List<Session> sessions; //Creates a sessions object
+  private List<Session> sessions;
+  private MemberFee fee;
   private HashMap<String,int[]> memberPaid; 
   private MessageSystem messageSystem;
   //private List<Coach> coaches = new ArrayList<Coach>();
@@ -132,16 +133,27 @@ public class MembershipManagement{
     HashMap<String,int[]> members = memberPayments();
     for (String key : members.keySet()){
       if (members.get(key)[1] > 1 /*&&  ???????SOMETHING?????? */ ){
-        //create fee
+        fee.incrementFee(10.0);
+        createMessage(key,"Excluded from the group");
       } 
-      //A reminder will be sent for any member who has skipped at least one payment.
-      else if (members.get(key)[1] == 1){
-        //send reminder
+      //A reminder will be sent for any member who has skipped at least one payment (1 or more).
+      if (members.get(key)[1] >= 1){
+        createMessage(key,"Don't forget to make your payment, or you may face serious consequences!");
       }
     } 
-    //If the member does not skip a payment for 3 months, he will receive a complimentary discount for 10% off for one class.
-    
   }
+  
+  /*
+   * //If the member does not skip a payment for 3 months he will
+   * receive a complimentary discount for 10% off for one class.
+   * 
+   */
+  public void applyDiscount(){
+  //if the member did not skip 3 months
+    //then
+    //fee.applyDiscount(10) 10 percent
+  }
+  
   
   /*
    * //////////////////////////////RONY WRITE THE SUMMARY OF THIS METHOD HERE///////////////////////
