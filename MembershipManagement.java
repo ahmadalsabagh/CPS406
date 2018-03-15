@@ -212,7 +212,7 @@ public class MembershipManagement{
      * receive a complimentary discount for 10% off for one class.
      *
      */
-    public static ArrayList<MemberFee> applyDiscount(ArrayList<MemberFee> newFees){
+    public static void applyDiscount(ArrayList<MemberFee> newFees){
       //if the member did not skip 3 months
       HashMap<String, int[]> members = memberPayments();
        //iterate over key
@@ -221,11 +221,6 @@ public class MembershipManagement{
           fees.applyConsecDiscount(10.0);
         }
       }
-      
-        //then
-        //fee.applyDiscount(10) 10 percent
-
-        return newFees;
     }
 
     /*
