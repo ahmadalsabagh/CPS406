@@ -2,8 +2,8 @@ import java.util.*;
 
 public class MembershipManagement{
   
-  private List<Session> sessions;
-  private HashMap<String,int[]> memberPaid;
+  private List<Session> sessions; //Creates a sessions object
+  private HashMap<String,int[]> memberPaid; 
   private MessageSystem messageSystem;
   //private List<Coach> coaches = new ArrayList<Coach>();
   
@@ -25,62 +25,66 @@ public class MembershipManagement{
   }
   
   
-  
+  /*
+   * Orders the member names by most payments to least payments and vice versa
+   * @param order true for ordering high to low, false for low to high
+   * @return returns an arraylist of  string names ordered depending on the parameter value
+   * */
   public ArrayList<String> organizeByPayments(boolean order){
-  HashMap<String,int[]> memberPaid = memberPayments();
-  
+    HashMap<String,int[]> memberPaid = memberPayments(); //Initialize  the HashMap from the memberPayments method
+    
+    HashMap<String,int[]> tempMap;
+    tempMap = memberPaid;
+    ArrayList<String> orderedNames = new ArrayList<String>(); 
+    int highestVal;
+    String highestKey;
+    
+    //If the order is from highest to lowest
     if (order){
       //look for the highest key (name) of paid, second highest of paid....etc.
-      HashMap<String,int[]> tempMap;
-      tempMap = memberPaid;
-      ArrayList<String> orderedPaid = new ArrayList<String>(); 
       for (int i = 0; i < tempMap.size(); i++){
-        int highestVal = -1;
-        String highestKey = "";
-        
+        highestVal = -1;
+        highestKey = "";
+        //iterate over key
         for (String key : tempMap.keySet()){
-          //iterate over key
-          //System.out.println(key+" "+mp.get(key));
           if (tempMap.get(key)[1] > highestVal){
             highestVal = tempMap.get(key)[1];
             highestKey = key; //cast to String
           } 
         }
-        orderedPaid.add(highestKey);
+        orderedNames.add(highestKey);
         tempMap.remove(highestKey);
       }
-      return orderedPaid;
-    }else{
+    }
+    else{ //Orders from least payments to most payments
       //look for the highest value of not paid, second highest of not paid... etc.
-      HashMap<String,int[]> tempMap;
-      tempMap = memberPaid;
-      ArrayList<String> orderedNotPaid = new ArrayList<String>(); 
       for (int i = 0; i < tempMap.size(); i++){
-        int highestVal = -1;
-        String highestKey = "";
+        highestVal = -1;
+        highestKey = "";
         
+        //iterate over key
         for (String key : tempMap.keySet()){
-          //iterate over key
-          //System.out.println(key+" "+mp.get(key));
           if (tempMap.get(key)[0] > highestVal){
             highestVal = tempMap.get(key)[0];
             highestKey = key; //cast to String
           } 
         }
-        orderedNotPaid.add(highestKey);
+        orderedNames.add(highestKey);
         tempMap.remove(highestKey);
       }
-      return orderedNotPaid;
     }
-    
+    return orderedNames;
   }
   
   
-    //Helper method
-  //Creates a HashMap of members as key and number of payments/missed payments as a value
-  //returns the HashMap
+ /*
+  * Creates a HashMap wit the members being the key and an array of integers
+  * being the value, the array holds 2 ints first one is the number of sessions
+  * paid and the 2nd value is the sessions not paid
+  * @return HashMap with string as key and int array as value
+  * */
   public HashMap<String, int[]> memberPayments(){
-       //2d array create
+    //2d array create
     String[][] temp; 
     //array of 2 integers, paid & not paid
     int[] paidOrNot = {0,0};
@@ -117,7 +121,12 @@ public class MembershipManagement{
   
   
   
-  
+  /*
+   * Checks the times the member paid, if they have not paid more than once
+   * they receieve a penalty fee, and a message warning of possible exclusion
+   * from the group. If the member skips 1 or more payments they will receieve
+   * a warning message.
+   * */
   public void missedPayments(){
     //If the member has not paid more than once, then he will be subject to a penalty fee and possibly exclusion from the group.
     HashMap<String,int[]> members = memberPayments;
@@ -134,7 +143,10 @@ public class MembershipManagement{
     
   }
   
-  
+  /*
+   * //////////////////////////////RONY WRITE THE SUMMARY OF THIS METHOD HERE///////////////////////
+   * @return and write what it is returning
+   * */
   private HashMap<String, Integer> UpdatePaymentsDue() {
     String[][] temp;
     
@@ -153,7 +165,12 @@ public class MembershipManagement{
   }
   
   
-  
+  /*
+   * Creates a message given the name and content of the messsage
+   * and sends it to the member
+   * @param name takes the name of the member to send the message to
+   * @param message the message to send the member
+   * */
   public void createMessage(String name,String message)
   {
     messageSystem= new MessageSystem();
