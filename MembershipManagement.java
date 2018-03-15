@@ -3,7 +3,7 @@ import java.util.*;
 public class MembershipManagement{
   
   private List<Session> sessions;
-  private MemberFee fee;
+  private ArrayList<MemberFee> fees = new ArrayList<MemberFee>();
   private HashMap<String,int[]> memberPaid; 
   private MessageSystem messageSystem;
   //private List<Coach> coaches = new ArrayList<Coach>();
@@ -22,6 +22,7 @@ public class MembershipManagement{
     messageSystem.CreateMessage("Ahmad","Pay ur Fucking Bills");
     messageSystem.ShowMessages("Elton");
     //end of Test
+    
     
   }
   
@@ -129,11 +130,21 @@ public class MembershipManagement{
    * a warning message.
    * */
   public void missedPayments(){
+    boolean found = false;
     //If the member has not paid more than once, then he will be subject to a penalty fee and possibly exclusion from the group.
     HashMap<String,int[]> members = memberPayments();
     for (String key : members.keySet()){
-      if (members.get(key)[1] > 1 /*&&  ???????SOMETHING?????? */ ){
-        fee.incrementFee(10.0);
+      if (members.get(key)[1] > 1){
+        for (int i = 0; i < fees.size(); i++){
+          if (fees.get(i).getName == key){
+            fees.get(i).incrementFee(10.0);
+            found = true;
+          }
+        }
+        if (!found){
+          fees.add(new MemberFee(10,key)); //check order of payments, fees and discounts and fix this line accordingly
+        }
+        
         createMessage(key,"Excluded from the group");
       } 
       //A reminder will be sent for any member who has skipped at least one payment (1 or more).
