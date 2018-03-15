@@ -192,7 +192,7 @@ public class MembershipManagement{
             if (memberPaid.get(key)[1] > 1){
                 for (int i = 0; i < newFees.size(); i++){
                     if (newFees.get(i).getName == key){
-                        newFees.get(i).applyConsecPenalty(10.0);
+                        newFees.get(i).applyPenalty(10.0);
                         i = newFees.size();
                     }
                 }
