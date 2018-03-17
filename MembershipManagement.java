@@ -9,7 +9,7 @@ public class MembershipManagement{
     //Initialize  the HashMap from the memberPayments method
     private static HashMap<String,int[]> memberPaid;
 
-    //private List<Coach> coaches = new ArrayList<Coach>();
+    private static List<Coach> coaches = new ArrayList<Coach>();
 
     public static void main(String args[])
     {
@@ -32,51 +32,95 @@ public class MembershipManagement{
         //end of Test
     }
 
+
+    /*
+     * Using the list of members, organize the members by the amount of times they have attended practice at the club.
+     */
+    public static ArrayList<String> organizeByAttendance(){
+        HashMap<String,int[]> tempMap = new HashMap<>();
+        ArrayList<int[]> temp;
+        String[][] temp2;
+        int[] frequency;
+
+        for (int i = 0; i < coaches.size(); i++)
+        {
+            temp = coaches.getFrequency();
+            temp2 = sessions.get(i).GetMemberReportInfo();
+
+            for (int j = 0; j < temp.size(); i++)
+            {
+                if(tempMap.containsKey(temp2[j][0]))
+                {
+                    frequency = tempMap.get(temp2[j][0]);
+
+                    frequency[0] += temp.get(j)[1];
+
+                    tempMap.put(temp2[j][0], frequency);
+                }
+                else
+                {
+                    frequency = new int[1];
+                    frequency[0] = 0;
+
+                    tempMap.put(temp2[j][0], frequency);
+                }
+            }
+        }
+
+        return sortHashMap(tempMap, 0);
+    }
+
+
+    /*
+     * Function to sort a hash map
+     */
+    public static ArrayList<String> sortHashMap (HashMap<String,int[]> tempMap, int index)
+    {
+        ArrayList<String> orderedNames = new ArrayList<String>();
+        int highestVal;
+        String highestKey;
+
+        //look for the highest key (name) of paid, second highest of paid....etc.
+        for (int i = 0; i < tempMap.size(); i++){
+            highestVal = -1;
+            highestKey = "";
+
+            //iterate over key
+            for (String key : tempMap.keySet()){
+                if (tempMap.get(key)[index] > highestVal){
+                    highestVal = tempMap.get(key)[index];
+                    highestKey = key; //cast to String
+                }
+            }
+
+            orderedNames.add(highestKey);
+            tempMap.remove(highestKey);
+        }
+
+        return orderedNames;
+    }
+
+
     /*
      * Orders the member names by most payments to least payments and vice versa
      * @param order true for ordering high to low, false for low to high
      * @return returns an arraylist of  string names ordered depending on the parameter value
      * */
     public static ArrayList<String> organizeByPayments(boolean order){
-        HashMap<String,int[]> tempMap;
-        tempMap = memberPaid;
+        HashMap<String,int[]> tempMap = memberPaid;
         ArrayList<String> orderedNames = new ArrayList<String>();
         int highestVal;
         String highestKey;
 
         //If the order is from highest to lowest
-        if (order){
-            //look for the highest key (name) of paid, second highest of paid....etc.
-            for (int i = 0; i < tempMap.size(); i++){
-                highestVal = -1;
-                highestKey = "";
-                //iterate over key
-                for (String key : tempMap.keySet()){
-                    if (tempMap.get(key)[1] > highestVal){
-                        highestVal = tempMap.get(key)[1];
-                        highestKey = key; //cast to String
-                    }
-                }
-                orderedNames.add(highestKey);
-                tempMap.remove(highestKey);
-            }
+        if (order)
+        {
+            orderedNames = sortHashMap(tempMap, 0);
         }
-        else{ //Orders from least payments to most payments
-            //look for the highest value of not paid, second highest of not paid... etc.
-            for (int i = 0; i < tempMap.size(); i++){
-                highestVal = -1;
-                highestKey = "";
-
-                //iterate over key
-                for (String key : tempMap.keySet()){
-                    if (tempMap.get(key)[0] > highestVal){
-                        highestVal = tempMap.get(key)[0];
-                        highestKey = key; //cast to String
-                    }
-                }
-                orderedNames.add(highestKey);
-                tempMap.remove(highestKey);
-            }
+        //Orders from least payments to most payments
+        else
+        {
+            orderedNames = sortHashMap(tempMap, 1);
         }
 
         return orderedNames;
@@ -101,10 +145,12 @@ public class MembershipManagement{
             for (int x = 0; x < temp.length; x++){
                 if (memberPaid.containsKey(temp[x][0])){
                     paidOrNot = memberPaid.get(temp[x][0]);
-                    if (temp[x][1] == "True")
+
+                    if (temp[x][1] == "true")
                     {
                         paidOrNot[0]++;
                     }
+
                     memberPaid.put(temp[x][0], paidOrNot);
                 }
                 else{
@@ -212,22 +258,51 @@ public class MembershipManagement{
      * receive a complimentary discount for 10% off for one class.
      *
      */
-    public static void applyDiscount(ArrayList<MemberFee> newFees){
-      //if the member did not skip 3 months
-      HashMap<String, int[]> members = memberPayments();
-       //iterate over key
-      for (String key : members.keySet()){
-        if (members.get(key)[0] >= 3 && members.get(key)[1] == 0){
-          fees.applyConsecDiscount(10.0);
+    public static ArrayList<MemberFee> applyDiscount(ArrayList<MemberFee> newFees){
+        //if the member did not skip 3 months
+
+        //iterate over key
+        for (String key : memberPaid.keySet()){
+            if (memberPaid.get(key)[0] >= 3 && memberPaid.get(key)[1] == 0){
+                for (int i = 0; i < newFees.size(); i++)
+                {
+                    if (newFees.get(i).getName() == key)
+                    {
+                        newFees.get(i).applyConsecDiscount(10.0);
+                        i = newFees.size();
+                    }
+                }
+            }
         }
-      }
+
+        return newFees;
     }
 
     /*
      * The top 10 people on the list of most practices attended will receive
      * a complimentary discount of %10 off for one class
      */
-    public static ArrayList<MemberFee> applyAttendDiscount(ArrayList<MemberFee> newFees) {
+    public static ArrayList<MemberFee> applyAttendDiscount(ArrayList<MemberFee> newFees)
+    {
+        ArrayList<String> orderedNames = organizeByAttendance();
+        int temp = 10;
+
+        if (orderedNames.size() < 10)
+        {
+            temp = orderedNames.size();
+        }
+
+        for (int i = 0; i < temp; i++)
+        {
+            for (int j = 0; j < newFees.size(); j++)
+            {
+                if (newFees.get(j).getName() == orderedNames.get(i))
+                {
+                    newFees.get(j).applyAttendDiscount(10.0);
+                    j = newFees.size();
+                }
+            }
+        }
 
         return  newFees;
     }
