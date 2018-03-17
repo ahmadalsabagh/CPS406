@@ -5,12 +5,13 @@ public class Treasurer {
 	
 	public MessageSystem notifications;
 	private int paidUp;
+	private Session current;
 	private double treasury;
 	
 	public Treasurer(double treasury){
 	    this.notifications = new MessageSystem();
 	    this.treasury = treasury;
-		this.paidAccounts();
+		//this.paidAccounts();
 	  }
 	
 	//returns the balance of the treasury
@@ -33,7 +34,7 @@ public class Treasurer {
 		}
 	//Cycles through the array of members in a given session and returns the number of members who have paid for that session
 		private void paidAccounts(Session current) {
-			
+			this.current = current;
 			String[][] temp = current.GetMemberReportInfo();
 			for (int i = 0; i < temp.length; i++)
 	        {
