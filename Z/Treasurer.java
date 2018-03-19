@@ -56,14 +56,8 @@ public class Treasurer {
 			
 			int num_members = temp.length;
 			int notPaid = num_members - this.paidUp;
-			String invoice = 
-			"+-----Monthly Revenue-----+
-			\nMembers: " + num_members + 
-			"\nPaid Members:  " + this.paidUp + 
-			"\nUnpaid Members: " + notPaid +
-			"\n\nClub Revenue: +" + this.paidUp * 200 + "$"
-			"\nClub Expenses: -" + hall_pay + "$ Location rent" +
-			"\n               -" + coach_py + "$ Coach payment";
+			String ret =  "+-----Monthly Revenue-----+\nMembers: " + num_members + "\nPaid Members:  " + this.paidUp + "\nUnpaid Members: " + notPaid +"\n\nClub Revenue: +" + (this.paidUp * 200) + "$\nClub Expenses: -" + hall_pay + "$ Location rent\n               -" + coach_pay + "$ Coach payment" ;
+			return ret;
 
 		}
 }
