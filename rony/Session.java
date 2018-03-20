@@ -13,7 +13,7 @@ public class Session
         this.month = newMonth;
     }
 
-    public void AddMember(String name, String number, String isPaid, String address) {
+    public void addMember(String name, String number, String isPaid, String address) {
         if(members == null){
             members = new String[1][];
 
@@ -25,11 +25,11 @@ public class Session
         }
         else
         {
-            members = AddIndex(name, number, isPaid, address);
+            members = addIndex(name, number, isPaid, address);
         }
     }
 
-    public void RemoveMember(String name) {
+    public void removeMember(String name) {
         int remove = 0;
         boolean found = false;
 
@@ -47,7 +47,7 @@ public class Session
         {
             if (members.length > 1)
             {
-                members = RemoveIndex(remove);
+                members = removeIndex(remove);
             }
             else
             {
@@ -56,7 +56,12 @@ public class Session
         }
     }
 
-    public String[][] GetMemberReportInfo() {
+    public String[][] getMembers()
+    {
+        return members;
+    }
+
+    public String[][] getMemberReportInfo() {
         String[][] temp = new String[members.length][2];
 
         for (int i = 0; i < temp.length; i++)
@@ -70,7 +75,7 @@ public class Session
         return temp;
     }
 
-    private String[][] RemoveIndex(int remove) {
+    private String[][] removeIndex(int remove) {
         String[][] temp = new String[members.length - 1][4];
         int count = 0;
 
@@ -90,7 +95,7 @@ public class Session
         return temp;
     }
 
-    private String[][] AddIndex(String name, String number, String isPaid, String address) {
+    private String[][] addIndex(String name, String number, String isPaid, String address) {
         String[][] temp = new String[members.length + 1][4];
 
         for (int i = 0; i < members.length; i++)
