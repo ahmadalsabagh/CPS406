@@ -46,8 +46,8 @@ public class MembershipManagement{
 
         for (int i = 0; i < coaches.size(); i++)
         {
-            temp = coaches.getFrequency();
-            temp2 = sessions.get(i).GetMemberReportInfo();
+            temp = coaches.get(i).getFrequency();
+            temp2 = sessions.get(i).getMemberReportInfo();
 
             for (int j = 0; j < temp.size(); i++)
             {
@@ -142,7 +142,7 @@ public class MembershipManagement{
         int[] paidOrNot = {0,0};
         memberPaid = new HashMap<String,int[]>();
         for (int i = 0; i < sessions.size(); i++){
-            temp = sessions.get(i).GetMemberReportInfo();
+            temp = sessions.get(i).getMemberReportInfo();
             //loop thru 2d array
             for (int x = 0; x < temp.length; x++){
                 if (memberPaid.containsKey(temp[x][0])){
@@ -190,7 +190,7 @@ public class MembershipManagement{
 
         memberPaid = new HashMap<String, int[]>();
         for (int i = 0; i < sessions.size(); i++){
-            temp = sessions.get(i).GetMemberReportInfo();
+            temp = sessions.get(i).getMemberReportInfo();
 
             for (int j = 0; j < temp.length; j++){
                 if (!memberPaid.containsKey(temp[j][0])){
@@ -239,7 +239,7 @@ public class MembershipManagement{
         for (String key : memberPaid.keySet()){
             if (memberPaid.get(key)[1] > 1){
                 for (int i = 0; i < newFees.size(); i++){
-                    if (newFees.get(i).getName == key){
+                    if (newFees.get(i).getName() == key){
                         newFees.get(i).applyPenalty(10.0);
                         i = newFees.size();
                     }
@@ -315,7 +315,7 @@ public class MembershipManagement{
      * @param name takes the name of the member to send the message to
      * @param message the message to send the member
      * */
-    public void createMessage(String name,String message)
+    public static void createMessage(String name,String message)
     {
         messageSystem= new MessageSystem();
         messageSystem.CreateMessage(name,message);
@@ -324,7 +324,7 @@ public class MembershipManagement{
     /*
      * Loads a file into memory and returns an array containing the file contents
      */
-    public String[] loadFile(String fileName)
+    public static String[] loadFile(String fileName)
     {
         String[] result = null;
 
@@ -354,7 +354,7 @@ public class MembershipManagement{
     /*
      * Writes a file into memory and returns an array containing the file contents
      */
-    public void saveFile(String fileName, String[] fileText)
+    public static void saveFile(String fileName, String[] fileText)
     {
         try
         {
@@ -370,6 +370,62 @@ public class MembershipManagement{
         catch (Exception e)
         {
             JOptionPane.showMessageDialog(null, e.getMessage(), fileName + " File Write Exception", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    /*
+     * Function for loading in all the session data from a text file
+     */
+    public List<Session> loadSessionData()
+    {
+        List<Session> tempSessions = new ArrayList<Session>();
+        List<String[]> loadedData = new ArrayList<String[]>();
+
+        for (int i = 0; i < 12; i++)
+        {
+            String[] tempArr = loadFile("sessions" + i + ".txt");
+            loadedData.add(tempArr);
+        }
+
+        for (int i = 0; i < 12; i++)
+        {
+            Session newSession = new Session(i);
+
+            for (int j = 0; j < loadedData.get(i).length; j++)
+            {
+                newSession.addMember(loadedData.get(i)[j], loadedData.get(i)[j + 1],
+                        loadedData.get(i)[j + 2], loadedData.get(i)[j + 3]);
+                j += 3;
+            }
+
+            tempSessions.add(newSession);
+        }
+
+        return tempSessions;
+    }
+
+    /*
+     * Function for saving all the session data into a text file
+     */
+    public void saveSessionData(List<Session> sessions)
+    {
+        List<String> writeData = new ArrayList<String>();
+
+        for (int i = 0; i < sessions.size(); i++)
+        {
+            String[][] currMembers = sessions.get(i).getMembers();
+
+            for (int j = 0; j < currMembers.length; j++)
+            {
+                for (int k = 0; k < currMembers[j].length; k++)
+                {
+                    writeData.add(currMembers[j][k]);
+                }
+            }
+
+            Object[] temp = writeData.toArray();
+            saveFile("sessions" + i + ".txt", Arrays.copyOf(temp, temp.length, String[].class));
+            writeData = new ArrayList<String>();
         }
     }
 }
