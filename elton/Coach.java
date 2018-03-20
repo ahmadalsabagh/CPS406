@@ -16,12 +16,24 @@ public class Coach
   }
   public  Session remove(String n)
   {
-   session.RemoveMember(n); 
+    
+    String[][] members = session.getMemberReportInfo();
+    for(int x = 0;x < members.length;x++)
+    {
+     if(members[x][0].equals(n))
+     {
+       frequency.remove(x);
+     }  
+      
+    }  
+   session.removeMember(n); 
     return session;
   }  
-  public Session add(String n)
+  public Session add(String name, String number, String isPaid, String address)
   {
-   //session.AddMember(n); 
+    int[] empty = {0,0};
+   session.addMember(name,number,isPaid,address);
+    frequency.add(empty);
    return session;
     
   } 
@@ -45,7 +57,7 @@ public class Coach
   }
   public void initializeArray()
   {
-   String[][] temp=session.GetMemberReportInfo();
+   String[][] temp=session.getMemberReportInfo();
    int[] blank ={0,0};
      for (int x = 0; x < temp.length; x++)
      {
