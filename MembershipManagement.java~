@@ -1,5 +1,6 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
+import javax.swing.JOptionPane;
 
 public class MembershipManagement{
 
@@ -250,4 +251,55 @@ public class MembershipManagement{
         messageSystem.CreateMessage(name,message);
     }
 
+    /*
+     * Loads a file into memory and returns an array containing the file contents
+     */
+    public String[] loadFile(String fileName)
+    {
+        String[] result = null;
+
+        try
+        {
+            File file = new File(fileName);
+            Scanner input = new Scanner(file);
+            List<String> list = new ArrayList<String>();
+
+            while (input.hasNextLine())
+            {
+                list.add(input.nextLine());
+            }
+
+            Object[] temp = list.toArray();
+            result = Arrays.copyOf(temp, temp.length, String[].class);
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage(), fileName + " File Load Exception", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        return result;
+    }
+
+
+    /*
+     * Writes a file into memory and returns an array containing the file contents
+     */
+    public void saveFile(String fileName, String[] fileText)
+    {
+        try
+        {
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("filename.txt"), "utf-8"));
+
+            for (String text : fileText)
+            {
+                writer.write(text);
+            }
+
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage(), fileName + " File Write Exception", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 }
