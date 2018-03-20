@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 /**
  *
  * @author elton
@@ -63,7 +61,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         jButton2.setText("LOGIN");
-        jButton2.setFont(new Font("Arial", Font.PLAIN, 40));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -137,12 +134,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-          CoachFrame cat = new CoachFrame();
-        cat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      cat.setVisible(true);
-    dispose();
-
-      
+        System.out.println("Hello");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
