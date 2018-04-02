@@ -8,7 +8,9 @@
  *
  * @author elton
  */
-public class CoachFrame extends javax.swing.JFrame {
+import java.awt.*;  
+import java.awt.event.*;  
+public class CoachFrame extends javax.swing.JFrame  {
 
     /**
      * Creates new form CoachFrame
@@ -27,17 +29,25 @@ public class CoachFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         logoutBtn = new javax.swing.JButton();
+        logoutBtn.addActionListener(new LogoutAction());
         msgBtn = new javax.swing.JButton();
+        msgBtn.addActionListener(new MsgAction());
         viewScheduleBtn = new javax.swing.JButton();
+        viewScheduleBtn.addActionListener(new ScheduleAction());
         msgTreasurerBtn = new javax.swing.JButton();
+        msgTreasurerBtn.addActionListener(new MsgTreasurerAction());
         practiceFreqBtn = new javax.swing.JButton();
+        practiceFreqBtn.addActionListener(new PracticeFreqAction());
         sessionFreqBtn = new javax.swing.JButton();
+        sessionFreqBtn.addActionListener(new SessionFreqAction());
         viewMemberBtn = new javax.swing.JButton();
+        viewMemberBtn.addActionListener(new ViewMemberAction());
         welcomeLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logoutBtn.setText("Logout");
+       
 
         msgBtn.setText("Message Members");
 
@@ -134,7 +144,63 @@ public class CoachFrame extends javax.swing.JFrame {
                 new CoachFrame().setVisible(true);
             }
         });
+     
+}
+    
+ private class LogoutAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press logout
+          System.out.println("Logout Button Pressed");
+          
     }
+ }
+  private class MsgAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press Message Memebers
+          System.out.println("Message Button Pressed");
+          
+    }
+ }
+  private class ScheduleAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press View Schedule
+          System.out.println("Schedule Button Pressed");
+          
+    }
+ }
+  private class MsgTreasurerAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press Message Treasurere
+          System.out.println("Message Treasurer Button Pressed");
+          
+    }
+ }
+  private class PracticeFreqAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press Practice Attendance
+          System.out.println("Practice Attendance Button Pressed");
+          
+    }
+ }
+  private class SessionFreqAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press Session Attendance
+          System.out.println("Session Attendance Button Pressed");
+          
+    }
+ }
+  private class ViewMemberAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press ViewMembers
+          System.out.println("View Members Button Pressed");
+          
+    }
+ }
+
+
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton logoutBtn;

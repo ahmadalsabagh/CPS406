@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.*;  
+import java.awt.event.*;  
 import javax.swing.*;
 /**
  *
@@ -30,6 +32,7 @@ public class Login extends javax.swing.JFrame {
         memberRb = new javax.swing.JRadioButton();
         coachRb = new javax.swing.JRadioButton();
         logBtn = new javax.swing.JButton();
+         
         treasurerRb = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,11 +63,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         logBtn.setText("LOGIN");
-        logBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logBtnActionPerformed(evt);
-            }
-        });
+        logBtn.addActionListener(new LoginAction());
 
         treasurerRb.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         treasurerRb.setText("Treasurer");
@@ -153,24 +152,31 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+              new Login().setVisible(true);
             }
         });
+ 
     }
-
+  private class LoginAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press login 
+          System.out.println("Login Button Pressed");
+          
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton coachRb;
     private javax.swing.JButton logBtn;
