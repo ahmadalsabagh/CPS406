@@ -4,17 +4,18 @@
 public class posEvent {
  
  Session session;
+ String usrName;
  MemberFee account;
  Treasurer treasurer;
  Coach coach;
  int paidUp;
 
- public posEvent(Session session, Treasurer treasurer, Coach coach, MemberFee account){
+ public posEvent(Session session, Treasurer treasurer, Coach coach, MemberFee account, String name){
      this.session = session;
      this.account = account;
      this.treasurer = treasurer;
      this.coach = coach;
-     
+     this.usrName = name;
      this.paidUp = paidAccounts(session);
    }
  
@@ -76,46 +77,37 @@ public class posEvent {
 
 
  //accepts a member ID and whether or not the customer is paying in advance, determines if the customer already exists and charges them accordingly
- public void acceptPayment(int memberId, boolean nextSessionInc) {
+ public void acceptPayment(String usrName, int type) {
   double bill = 0.0;
 
-  String[][] temp = this.session.getMemberReportInfo();
+ // String[][] temp = this.session.getMemberReportInfo();
   
-  if (memberId > temp.length) {
-   
-             if (temp[memberId][0] == account.getName())
-             {
-              if (nextSessionInc) {
+        if (type == 2) {
          bill = account.makePayment() + 100; //base class fee is $100
         }
         
-        else {
+        else if (type == 1){
          bill = account.makePayment();
         }
         
+        else {
+        	
+        	bill = account.getFee();
+        }
+        
         System.out.println("Your total is: $" + bill);
-        //PENDING METHOD OF PAYMENT IN UI
+        
+        session.addMember(usrName, "0", "true", "180 Bloor St. W");
         
         //increment the number of settled accounts by 1
         paidUp++;
         
         //SEND NOTIFICATION TO COACH AND TREASURER
-        String notification = String.format("Customer %2d just paid their bill", memberId);
+        String notification = String.format("Customer %2d just paid their bill", usrName);
         treasurer.notifications.CreateMessage("Customer Paid", notification);
         //coach.notifications.CreateMessage("Customer Paid", notification);
         
-        //set isPaid to "true"
-             }
-          
-             else {
-              System.out.print("ID does not match name. Please create a new profile and try again");
-             }
    
   }
   
-  else {
-   System.out.println("INVALID ID. PLEASE CREATE A NEW USER PROFILE AND TRY AGAIN");
-  }
-  
- }
 }

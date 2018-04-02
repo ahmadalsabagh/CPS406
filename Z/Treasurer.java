@@ -5,13 +5,12 @@ public class Treasurer {
  
  public MessageSystem notifications;
  private int paidUp;
- private Session current;
  private double treasury;
  
  public Treasurer(double treasury){
      this.notifications = new MessageSystem();
      this.treasury = treasury;
-  //this.paidAccounts();
+     this.paidUp = 0;
    }
  
  //returns the balance of the treasury
@@ -33,8 +32,8 @@ public class Treasurer {
    
   }
  //Cycles through the array of members in a given session and returns the number of members who have paid for that session
-  private void paidAccounts(Session current) {
-   this.current = current;
+  public int paidAccounts(Session current) {
+  // this.current = current;
    String[][] temp = current.getMemberReportInfo();
    for (int i = 0; i < temp.length; i++)
          {
@@ -42,13 +41,13 @@ public class Treasurer {
              {
               this.paidUp++;
              }
-         } 
+         }
+   
+   return paidUp;
   }
-  public int getPaid(){
-   return this.paidUp;
-  }
+  
  //Returns a String value containing information pertaining to club revenue, expenses, and profit for the session.
-  public String profitInvoice(){
+  public String profitInvoice(Session current){
    String[][] temp = current.getMemberReportInfo();
    final int hall_pay = 1500;
    final int coach_pay = 500;

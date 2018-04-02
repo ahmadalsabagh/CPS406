@@ -1,15 +1,13 @@
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//import Login.LoginAction;
-
-public class POSFrame extends javax.swing.JFrame {
+public class TreasurerFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form POSFrame
      */
-	
-    public POSFrame() {
+    public TreasurerFrame() {
         initComponents();
     }
 
@@ -23,26 +21,26 @@ public class POSFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         logoutBtn = new javax.swing.JButton();
-        oneClassBtn = new javax.swing.JButton();
-        twoClassBtn = new javax.swing.JButton();
-        outstandingBtn = new javax.swing.JButton();
-        balanceLbl = new javax.swing.JLabel();
+        invoiceBtn = new javax.swing.JButton();
+        memStatBtn = new javax.swing.JButton();
+        debtStatBtn = new javax.swing.JButton();
+        treasurerLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logoutBtn.setText("Logout");
 
-        oneClassBtn.setText("Schedule One Class");
-        oneClassBtn.addActionListener(new launchPOSOne());
+        invoiceBtn.setText("Session Invoice");
+        invoiceBtn.addActionListener(new launchInvoice());
 
-        twoClassBtn.setText("Schedule Two Classes");
-        twoClassBtn.addActionListener(new launchPOSTwo());
+        memStatBtn.setText("Member Status");
+        memStatBtn.addActionListener(new launchMemStat());
 
-        outstandingBtn.setText("Pay Outstanding");
-        outstandingBtn.addActionListener(new launchPOSZero());
+        debtStatBtn.setText("Debt Status");
+        debtStatBtn.addActionListener(new launchDebtStat());
 
-        balanceLbl.setText("Balance: $XX.XX"); //TODO change balance to actual member balance
-        balanceLbl.setToolTipText("");
+        treasurerLbl.setText("Treasurer");
+        treasurerLbl.setToolTipText("");
 
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -51,7 +49,7 @@ public class POSFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addComponent(balanceLbl)
+                .addComponent(treasurerLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGap(128, 128, 128)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -59,9 +57,9 @@ public class POSFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(outstandingBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                    .addComponent(twoClassBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(oneClassBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(debtStatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                    .addComponent(memStatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(invoiceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,15 +68,15 @@ public class POSFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(balanceLbl)
+                        .addComponent(treasurerLbl)
                        
                         ))
                 .addGap(64, 64, 64)
-                .addComponent(oneClassBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(invoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(twoClassBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(memStatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(outstandingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(debtStatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 28, Short.MAX_VALUE))
         );
 
@@ -115,41 +113,41 @@ public class POSFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new POSFrame().setVisible(true);
+                new TreasurerFrame().setVisible(true);
             }
         });
     }
     
-    private class launchPOSOne implements ActionListener {
+    private class launchInvoice implements ActionListener {
         public void actionPerformed(ActionEvent e) {
        
-          System.out.println("POS launched for one class");
+          System.out.println("Invoice");
           
     }
     
 }
-    private class launchPOSTwo implements ActionListener {
+    private class launchMemStat implements ActionListener {
         public void actionPerformed(ActionEvent e) {
        
-          System.out.println("POS launched for two classes");
+          System.out.println("Member Status");
           
     }
   }
     
-    private class launchPOSZero implements ActionListener {
+    private class launchDebtStat implements ActionListener {
         public void actionPerformed(ActionEvent e) {
        
-          System.out.println("POS launched to settle balance");
+          System.out.println("Debt Status");
           
     }
   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton oneClassBtn;
-    private javax.swing.JButton twoClassBtn;
+    private javax.swing.JButton invoiceBtn;
+    private javax.swing.JButton memStatBtn;
     private javax.swing.JButton logoutBtn;
-    private javax.swing.JButton outstandingBtn;
-    private javax.swing.JLabel balanceLbl;
+    private javax.swing.JButton debtStatBtn;
+    private javax.swing.JLabel treasurerLbl;
     
     // End of variables declaration//GEN-END:variables
 }
