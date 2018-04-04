@@ -4,24 +4,23 @@ import java.util.*;
 
 public class MembershipManagement{
 
-    private static List<Session> sessions;
-    private static ArrayList<MemberFee> fees;
-    private static MessageSystem messageSystem;
+    private List<Session> sessions;
+    private ArrayList<MemberFee> fees;
+    private MessageSystem messageSystem;
 
     //Initialize  the HashMap from the memberPayments method
-    private static HashMap<String,int[]> memberPaid;
+    private HashMap<String,int[]> memberPaid;
 
-    private static List<Coach> coaches = new ArrayList<Coach>();
+    private List<Coach> coaches = new ArrayList<Coach>();
 
-    public static void main(String args[])
+    public MembershipManagement()
     {
-        List<Session> sessions = new ArrayList<Session>();
+        List<Session> sessions = loadSessionData();
+
+        //Load Coach's, Load Treasurers
+
+        //Load messages as well
         MessageSystem messageSystem = new MessageSystem();
-
-        for (int i = 0; i < 12; i++){
-
-            sessions.add(new Session(i));
-        }
 
         memberPaid = memberPayments();
         fees = createFees();
@@ -35,11 +34,46 @@ public class MembershipManagement{
     }
 
 
+    public boolean checkUserLogin(String userName)
+    {
+        boolean isValid = false;
+        
+        for (int i = 0; i < sessions.size(); i++)
+        {
+            String[][] temp = sessions.get(i).getMemberNames();
+
+            for (int j = 0; j < temp.length; j++)
+            {
+                if (temp[j][0] == userName)
+                {
+                    isValid = true;
+                    j = temp.length;
+                    i = sessions.size();
+                }
+            }
+        }
+
+        return isValid;
+    }
+    
+    
+    public boolean checkCoachLogin(String coachName)
+    {
+        return true;
+    }
+
+    
+    public boolean checkTreasurerLogin(String treasurerLogin)
+    {
+        return true;
+    }
+
+
     /*
      * Using the list of members, organize the members by the amount of times they have attended practice at the club.
      */
-    public static ArrayList<String> organizeByAttendance(){
-        HashMap<String,int[]> tempMap = new HashMap<>();
+    public ArrayList<String> organizeByAttendance(){
+        HashMap<String,int[]> tempMap = new HashMap<String,int[]>();
         ArrayList<int[]> temp;
         String[][] temp2;
         int[] frequency;
@@ -76,7 +110,7 @@ public class MembershipManagement{
     /*
      * Function to sort a hash map
      */
-    public static ArrayList<String> sortHashMap (HashMap<String,int[]> tempMap, int index)
+    public ArrayList<String> sortHashMap (HashMap<String,int[]> tempMap, int index)
     {
         ArrayList<String> orderedNames = new ArrayList<String>();
         int highestVal;
@@ -108,7 +142,7 @@ public class MembershipManagement{
      * @param order true for ordering high to low, false for low to high
      * @return returns an arraylist of  string names ordered depending on the parameter value
      * */
-    public static ArrayList<String> organizeByPayments(boolean order){
+    public ArrayList<String> organizeByPayments(boolean order){
         HashMap<String,int[]> tempMap = memberPaid;
         ArrayList<String> orderedNames = new ArrayList<String>();
         int highestVal;
@@ -135,7 +169,7 @@ public class MembershipManagement{
      * paid and the 2nd value is the sessions not paid
      * @return HashMap with string as key and int array as value
      * */
-    public static HashMap<String, int[]> memberPayments(){
+    public HashMap<String, int[]> memberPayments(){
         //2d array create
         String[][] temp;
         //array of 2 integers, paid & not paid
@@ -185,7 +219,7 @@ public class MembershipManagement{
     }
 
 
-    private static HashMap<String, int[]> updatePaymentsDue() {
+    private HashMap<String, int[]> updatePaymentsDue() {
         String[][] temp;
 
         memberPaid = new HashMap<String, int[]>();
@@ -204,7 +238,7 @@ public class MembershipManagement{
     }
 
 
-    private static ArrayList<MemberFee> createFees()
+    private ArrayList<MemberFee> createFees()
     {
         ArrayList<MemberFee> newFees = new ArrayList<MemberFee>();
         int[] paidOrNot = {0,0};
@@ -234,7 +268,7 @@ public class MembershipManagement{
      * from the group. If the member skips 1 or more payments they will receieve
      * a warning message.
      * */
-    public static ArrayList<MemberFee> missedPayments(ArrayList<MemberFee> newFees){
+    public ArrayList<MemberFee> missedPayments(ArrayList<MemberFee> newFees){
         //If the member has not paid more than once, then he will be subject to a penalty fee and possibly exclusion from the group.
         for (String key : memberPaid.keySet()){
             if (memberPaid.get(key)[1] > 1){
@@ -260,7 +294,7 @@ public class MembershipManagement{
      * receive a complimentary discount for 10% off for one class.
      *
      */
-    public static ArrayList<MemberFee> applyDiscount(ArrayList<MemberFee> newFees){
+    public ArrayList<MemberFee> applyDiscount(ArrayList<MemberFee> newFees){
         //if the member did not skip 3 months
 
         //iterate over key
@@ -284,7 +318,7 @@ public class MembershipManagement{
      * The top 10 people on the list of most practices attended will receive
      * a complimentary discount of %10 off for one class
      */
-    public static ArrayList<MemberFee> applyAttendDiscount(ArrayList<MemberFee> newFees)
+    public ArrayList<MemberFee> applyAttendDiscount(ArrayList<MemberFee> newFees)
     {
         ArrayList<String> orderedNames = organizeByAttendance();
         int temp = 10;
@@ -315,7 +349,7 @@ public class MembershipManagement{
      * @param name takes the name of the member to send the message to
      * @param message the message to send the member
      * */
-    public static void createMessage(String name,String message)
+    public void createMessage(String name,String message)
     {
         messageSystem= new MessageSystem();
         messageSystem.CreateMessage(name,message);
@@ -324,7 +358,7 @@ public class MembershipManagement{
     /*
      * Loads a file into memory and returns an array containing the file contents
      */
-    public static String[] loadFile(String fileName)
+    public String[] loadFile(String fileName)
     {
         String[] result = null;
 
@@ -354,7 +388,7 @@ public class MembershipManagement{
     /*
      * Writes a file into memory and returns an array containing the file contents
      */
-    public static void saveFile(String fileName, String[] fileText)
+    public void saveFile(String fileName, String[] fileText)
     {
         try
         {
