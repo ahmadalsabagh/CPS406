@@ -54,6 +54,7 @@ public class CardInfoFrame extends javax.swing.JFrame {
         jLabel4.setText("CVV");
 
         payBtn.setText("Pay");
+        payBtn.addActionListener(new finalizePayment());
 
         jLabel5.setText("Session ID");
 
@@ -173,6 +174,15 @@ public class CardInfoFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    private class finalizePayment implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+        	
+       
+          System.out.println("Payment finalized");
+          
+    }
+  }
 
     // Variables declaration - do not modify                     
     private javax.swing.JLabel balanceLbl;

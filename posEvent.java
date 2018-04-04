@@ -1,22 +1,26 @@
+import java.util.List;
+
 /**
  * Created by Zamakhshari Abd Al-Ahad on 2018-03-15.
  */
 public class posEvent {
  
- Session session;
+ Session club;
+ List<Session> sessions;
  String usrName;
  MemberFee account;
  Treasurer treasurer;
  Coach coach;
  int paidUp;
 
- public posEvent(Session session, Treasurer treasurer, Coach coach, MemberFee account, String name){
-     this.session = session;
+ public posEvent(Session club, List<Session> sessions, Treasurer treasurer, Coach coach, MemberFee account, String name){
+     this.club = club;
+     this.sessions = sessions;
      this.account = account;
      this.treasurer = treasurer;
      this.coach = coach;
      this.usrName = name;
-     this.paidUp = paidAccounts(session);
+     this.paidUp = paidAccounts(club);
    }
  
  
@@ -36,13 +40,13 @@ public class posEvent {
  }
  
  
- public Session getSession() {
-  return session;
+ public Session getClub() {
+  return club;
  }
 
 
- public void setSession(Session session) {
-  this.session = session;
+ public void setClub(Session club) {
+  this.club = club;
  }
 
 
@@ -77,7 +81,8 @@ public class posEvent {
 
 
  //accepts a member ID and whether or not the customer is paying in advance, determines if the customer already exists and charges them accordingly
- public void acceptPayment(String usrName, int type) {
+ public double acceptPayment(String usrName, int type) {
+	 this.usrName = usrName;
   double bill = 0.0;
 
  // String[][] temp = this.session.getMemberReportInfo();
@@ -97,7 +102,7 @@ public class posEvent {
         
         System.out.println("Your total is: $" + bill);
         
-        session.addMember(usrName, "0", "true", "180 Bloor St. W");
+        
         
         //increment the number of settled accounts by 1
         paidUp++;
@@ -107,7 +112,14 @@ public class posEvent {
         treasurer.notifications.CreateMessage("Customer Paid", notification);
         //coach.notifications.CreateMessage("Customer Paid", notification);
         
-   
+        return bill;
+        
   }
+ 
+ public void scheduleSession(int sessionId) {
+	 
+	 sessions.get(sessionId - 1).addMember(usrName, "0", "true", "180 Bloor St. W");
+	 
+ }
   
 }

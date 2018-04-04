@@ -1,3 +1,6 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,6 +43,7 @@ public class MemberFrame extends javax.swing.JFrame {
         viewScheduleBtn.setText("View Schedule");
 
         FeeBtn.setText("Pay Fees");
+        FeeBtn.addActionListener(new payFees());
 
         MsgCoachBtn.setText("Message Coach");
 
@@ -122,6 +126,17 @@ public class MemberFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    private class payFees implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+        	
+          POSFrame pos = new POSFrame();
+          pos.setVisible(true);
+        	
+          System.out.println("POS launched");
+        }
+    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton FeeBtn;

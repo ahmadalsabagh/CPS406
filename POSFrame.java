@@ -123,6 +123,10 @@ public class POSFrame extends javax.swing.JFrame {
     private class launchPOSOne implements ActionListener {
         public void actionPerformed(ActionEvent e) {
        
+          CardInfoFrame card = new CardInfoFrame();
+          card.setVisible(true);
+          
+        	
           System.out.println("POS launched for one class");
           
     }
@@ -130,6 +134,9 @@ public class POSFrame extends javax.swing.JFrame {
 }
     private class launchPOSTwo implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+        	
+        	CardInfoFrame card = new CardInfoFrame();
+            card.setVisible(true);
        
           System.out.println("POS launched for two classes");
           
@@ -138,6 +145,9 @@ public class POSFrame extends javax.swing.JFrame {
     
     private class launchPOSZero implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+        	
+        	CardInfoFrame card = new CardInfoFrame();
+            card.setVisible(true);
        
           System.out.println("POS launched to settle balance");
           
