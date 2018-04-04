@@ -108,10 +108,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(108, Short.MAX_VALUE))
         );
-        ButtonGroup group = new ButtonGroup();
-        group.add(memberRb);
-        group.add(treasurerRb);
-        group.add(coachRb);
+
         treasurerRb.getAccessibleContext().setAccessibleName("btn3");
 
         pack();
@@ -177,18 +174,6 @@ public class Login extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press login 
           System.out.println("Login Button Pressed");
-          if(memberRb.isSelected())
-          {
-            System.out.println("Login Button Pressed as a member");
-          } 
-          if(treasurerRb.isSelected())
-          {
-            System.out.println("Login Button Pressed as a Treasurer");
-          }
-          if(coachRb.isSelected())
-          {
-            System.out.println("Login Button Pressed as a Coach");
-          }
           
     }
 }
