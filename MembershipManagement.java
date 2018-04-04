@@ -12,7 +12,7 @@ public class MembershipManagement{
     private HashMap<String,int[]> memberPaid;
 
     private List<Coach> coaches = new ArrayList<Coach>();
-
+    private List<Treasurer> treasurers = new ArrayList<Treasurer>();
     public MembershipManagement()
     {
         List<Session> sessions = loadSessionData();
@@ -65,7 +65,11 @@ public class MembershipManagement{
 
     public boolean checkTreasurerLogin(String treasurerLogin)
     {
-        return true;
+        String[] data = loadFile("treasurer.txt");
+        for(String i : data){
+            if (i == treasurerLogin){return true;}
+        }
+        return false;
     }
 
 
@@ -392,7 +396,7 @@ public class MembershipManagement{
     {
         try
         {
-            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("filename.txt"), "utf-8"));
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"));
 
             for (String text : fileText)
             {
@@ -535,5 +539,8 @@ public class MembershipManagement{
         }
 
         return tempCoaches;
+    }
+    public List<Treasurer> loadTreasurerData(){
+        
     }
 }
