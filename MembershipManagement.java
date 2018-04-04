@@ -37,7 +37,7 @@ public class MembershipManagement{
     public boolean checkUserLogin(String userName)
     {
         boolean isValid = false;
-        
+
         for (int i = 0; i < sessions.size(); i++)
         {
             String[][] temp = sessions.get(i).getMemberNames();
@@ -55,14 +55,14 @@ public class MembershipManagement{
 
         return isValid;
     }
-    
-    
+
+
     public boolean checkCoachLogin(String coachName)
     {
         return true;
     }
 
-    
+
     public boolean checkTreasurerLogin(String treasurerLogin)
     {
         return true;
@@ -461,5 +461,79 @@ public class MembershipManagement{
             saveFile("sessions" + i + ".txt", Arrays.copyOf(temp, temp.length, String[].class));
             writeData = new ArrayList<String>();
         }
+    }
+
+
+    public void saveCoachData(List<Coach> coaches)
+    {
+        List<String> writeData = new ArrayList<String>();
+
+        writeData.add("" + coaches.size());
+
+        for (int i = 0; i < coaches.size(); i++)
+        {
+            writeData.add(coaches.get(i).getName());
+            writeData.add("" + coaches.get(i).getSessionID());
+
+            ArrayList<int[]> tempFrequency = coaches.get(i).getFrequency();
+
+            for (int j = 0; j < tempFrequency.size(); j++)
+            {
+                for (int k = 0; k < tempFrequency.get(j).length; k++)
+                {
+                    writeData.add("" + tempFrequency.get(j)[k]);
+                }
+            }
+
+            writeData.add("DONE COACH");
+        }
+
+        Object[] temp = writeData.toArray();
+        saveFile("coaches" + ".txt", Arrays.copyOf(temp, temp.length, String[].class));
+    }
+
+    public List<Coach> loadCoachData()
+    {
+        List<Coach> tempCoaches = new ArrayList<Coach>();
+        String[] loadedData = loadFile("coaches" + ".txt");
+        int coachSize = Integer.parseInt(loadedData[0]);
+        int dataCount = 1;
+
+        for (int i = 0; i < coachSize; i++)
+        {
+            String tempName = loadedData[dataCount++];
+            int tempID = Integer.parseInt(loadedData[dataCount++]);
+            ArrayList<int[]> frequency = new ArrayList<int[]>();
+            boolean newFrequency = true;
+
+            while(true)
+            {
+                if (loadedData[dataCount] != "DONE COACH")
+                {
+                    if (newFrequency)
+                    {
+                        int[] temp = {Integer.parseInt(loadedData[dataCount]), 0};
+                        frequency.add(temp);
+                    }
+                    else
+                    {
+                        frequency.get(frequency.size() - 1)[1] = Integer.parseInt(loadedData[dataCount]);
+                    }
+
+                    newFrequency = !newFrequency;
+                    dataCount++;
+                }
+                else
+                {
+                    dataCount++;
+                    break;
+                }
+            }
+
+            tempCoaches.add(new Coach(sessions.get(tempID), tempName, tempID));
+            tempCoaches.get(tempCoaches.size() - 1).setFrequency(frequency);
+        }
+
+        return tempCoaches;
     }
 }
