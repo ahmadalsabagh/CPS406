@@ -1,3 +1,5 @@
+import java.awt.*;  
+import java.awt.event.*;  
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,15 +10,21 @@
  *
  * @author elton
  */
-import java.awt.*;  
-import java.awt.event.*;  
-public class CoachFrame extends javax.swing.JFrame  {
 
+
+public class CoachFrame extends javax.swing.JFrame  {
+  private Coach coach;
+  private MembershipManagement membership;
     /**
      * Creates new form CoachFrame
      */
     public CoachFrame() {
         initComponents();
+    }
+    
+    public CoachFrame(MembershipManagement membership, Coach coach){
+      this.coach = coach;
+      this.membership = membership;
     }
 
     /**
@@ -191,9 +199,14 @@ public class CoachFrame extends javax.swing.JFrame  {
  }
   private class ViewMemberAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-      //What happens when u press ViewMembers
-          System.out.println("View Members Button Pressed");
-          
+          //String memberNames[][] = coach.getSession().getMemberNames();
+          String memberNames[][] = {
+            {"bob"},{"silly"},{"billy"}, {"bonnie"}
+          };
+          SessionMemberView memberViewer = new SessionMemberView(memberNames);
+          //What happens when u press ViewMembers
+          memberViewer.setVisible(true);
+      
     }
  }
 

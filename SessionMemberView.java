@@ -1,3 +1,5 @@
+import java.awt.*;  
+import java.awt.event.*;  
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +19,14 @@ public class SessionMemberView extends javax.swing.JFrame {
     public SessionMemberView() {
         initComponents();
     }
+    
+    public SessionMemberView(String[][] memberNames){
+      initComponents();
+      for (int x = 0; x < memberNames.length; x++){
+        memberList.addItem(memberNames[x][0]);
+      }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,6 +39,7 @@ public class SessionMemberView extends javax.swing.JFrame {
 
         memberList = new java.awt.List();
         exitBtn = new javax.swing.JButton();
+        exitBtn.addActionListener(new CloseFrame());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,4 +111,13 @@ public class SessionMemberView extends javax.swing.JFrame {
     private javax.swing.JButton exitBtn;
     private java.awt.List memberList;
     // End of variables declaration//GEN-END:variables
+    
+    
+          private class CloseFrame implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+          dispose();
+    }
+ }
 }
+
+
