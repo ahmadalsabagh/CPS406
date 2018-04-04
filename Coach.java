@@ -77,6 +77,7 @@ public class Coach
     }  
   
    }
+  
   public void attendSession(int[] index)
    {
   int[] temp;
@@ -85,9 +86,19 @@ public class Coach
      temp = frequency.get(index[i]);
      temp[0]++;
      frequency.set(index[i],temp);
-    }  
-  
+    }
    }
+  
+  public String getName()
+  {
+    return name;
+  }
+  
+  public void setFrequency(ArrayList<int[]> newFrequency)
+  {
+      frequency = newFrequency;
+  }
+  
   public ArrayList<int[]> getFrequency()
   {
    return frequency; 
