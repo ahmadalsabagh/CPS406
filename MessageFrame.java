@@ -59,6 +59,7 @@ public class MessageFrame extends javax.swing.JFrame {
         msgTxt = new javax.swing.JTextArea();
         sendBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
+        sendBtn.addActionListener(new MsgMembers());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,6 +139,23 @@ public class MessageFrame extends javax.swing.JFrame {
         /* Create and display the form */
        
     }
+    
+    private class MsgMembers implements ActionListener {
+      public void actionPerformed(ActionEvent e) {
+        String[][] memberNames = coach.session.getMemberNames();
+        String message = msgTxt.getText();
+        for (int x = 0; x < memberNames.length(); x++){
+          membership.messageSystem.createMessage(memberNames[x][0],message);
+        }          
+      }
+    }
+      
+      private class MsgTreasurer implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+          String message = msgTxt.getText();
+            membership.messageSystem.createMessage("bossman444",message);         
+        }
+      }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton cancelBtn;
