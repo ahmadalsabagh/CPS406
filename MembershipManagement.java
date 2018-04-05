@@ -8,6 +8,7 @@ public class MembershipManagement{
     public List<Coach> coaches;
     public ArrayList<MemberFee> fees;
     public MessageSystem messageSystem;
+    public int currCoach;
 
     //Initialize  the HashMap from the memberPayments method
     public HashMap<String,int[]> memberPaid;
@@ -59,12 +60,12 @@ public class MembershipManagement{
 
             if (temp.equals(coachName))
             {
-                System.out.println("Passed");
+                currCoach = i;
                 return true;
             }
         }
 
-        System.out.println("Failed");
+        
         return false;
     }
 
@@ -478,12 +479,12 @@ public class MembershipManagement{
     {
         List<String> writeData = new ArrayList<String>();
 
-        writeData.add("" + coaches.size());
+        writeData.add("" + coaches.size()+"\n");
 
         for (int i = 0; i < coaches.size(); i++)
         {
-            writeData.add(coaches.get(i).getName());
-            writeData.add("" + coaches.get(i).getSessionID());
+            writeData.add(coaches.get(i).getName()+"\n");
+            writeData.add("" + coaches.get(i).getSessionID()+"\n");
 
             ArrayList<int[]> tempFrequency = coaches.get(i).getFrequency();
 
@@ -491,11 +492,11 @@ public class MembershipManagement{
             {
                 for (int k = 0; k < tempFrequency.get(j).length; k++)
                 {
-                    writeData.add("" + tempFrequency.get(j)[k]);
+                    writeData.add("" + tempFrequency.get(j)[k]+"\n");
                 }
             }
 
-            writeData.add("DONE COACH");
+            writeData.add("DONE COACH" +"\n");
         }
 
         Object[] temp = writeData.toArray();

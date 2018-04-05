@@ -13,20 +13,32 @@ import java.awt.event.*;
 
 
 public class CoachFrame extends javax.swing.JFrame  {
-  private Coach coach;
-  private MembershipManagement membership;
+ 
     /**
      * Creates new form CoachFrame
+     * 
      */
-    public CoachFrame() {
+    public Coach coach;
+    public MembershipManagement membership;
+    public CoachFrame(MembershipManagement membership, Coach coach,Boolean dog) {
+        this.membership = membership;
+      this.coach = coach;
         initComponents();
     }
     
     public CoachFrame(MembershipManagement membership, Coach coach){
-      this.coach = coach;
+     
       this.membership = membership;
-    }
+      this.coach = coach;
+      java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CoachFrame(membership,coach,true).setVisible(true);
+            }
+        });
 
+       /* Create and display the form */
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +47,7 @@ public class CoachFrame extends javax.swing.JFrame  {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+         
         logoutBtn = new javax.swing.JButton();
         logoutBtn.addActionListener(new LogoutAction());
         msgBtn = new javax.swing.JButton();
@@ -146,22 +158,10 @@ public class CoachFrame extends javax.swing.JFrame  {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CoachFrame().setVisible(true);
-            }
-        });
      
 }
     
- private class LogoutAction implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-      //What happens when u press logout
-          System.out.println("Logout Button Pressed");
-          
-    }
- }
+ 
   private class MsgAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press Message Memebers
@@ -209,7 +209,21 @@ public class CoachFrame extends javax.swing.JFrame  {
       
     }
  }
-
+private class LogoutAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press logout
+          
+          membership.saveSessionData(membership.sessions);
+          membership.saveCoachData(membership.coaches);
+             java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+              new Login().setVisible(true);
+            }
+        });
+        dispose();
+          
+    }
+ }
 
 
 
@@ -224,5 +238,6 @@ public class CoachFrame extends javax.swing.JFrame  {
     private javax.swing.JButton viewMemberBtn;
     private javax.swing.JButton viewScheduleBtn;
     private javax.swing.JLabel welcomeLbl;
+ 
     // End of variables declaration//GEN-END:variables
 }

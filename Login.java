@@ -184,6 +184,8 @@ public class Login extends javax.swing.JFrame {
           {
               if (membershipManagement.checkUserLogin(userTxt.getText()))
               {
+                  MemberFrame memberFrame = new MemberFrame(membershipManagement,userTxt.getText());
+                  dispose();
                   //redirect to next page passing in the membershipManagement and user type/name
                   System.out.println("User logged in");
               }
@@ -192,7 +194,7 @@ public class Login extends javax.swing.JFrame {
           {
               if (membershipManagement.checkTreasurerLogin(userTxt.getText()))
               {
-                  //redirect to next page passing in the membershipManagement and user type/name
+               
                   System.out.println("User logged in");
               }
           }
@@ -200,7 +202,9 @@ public class Login extends javax.swing.JFrame {
           {
               if (membershipManagement.checkCoachLogin(userTxt.getText()))
               {
-                  //redirect to next page passing in the membershipManagement and user type/name
+                CoachFrame coachFrame = new CoachFrame(membershipManagement,membershipManagement.coaches.get(membershipManagement.currCoach));
+                dispose();
+                  
                   System.out.println("User logged in");
               }
           }

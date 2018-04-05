@@ -16,9 +16,23 @@ public class MemberFrame extends javax.swing.JFrame {
     /**
      * Creates new form MemberFrame
      */
-    public MemberFrame() {
+  private MembershipManagement membership;
+  private String memberName;
+    public MemberFrame(MembershipManagement membership, String memberName,Boolean True) {
+      this.membership = membership;
+      this.memberName = memberName;
         initComponents();
     }
+    public MemberFrame(MembershipManagement membership, String memberName)
+    {
+      
+       /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MemberFrame(membership,memberName,true).setVisible(true);
+            }
+        });
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,20 +133,15 @@ public class MemberFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MemberFrame().setVisible(true);
-            }
-        });
+      
     }
     
     private class payFees implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-        	
+         
           POSFrame pos = new POSFrame();
           pos.setVisible(true);
-        	
+         
           System.out.println("POS launched");
         }
     }
