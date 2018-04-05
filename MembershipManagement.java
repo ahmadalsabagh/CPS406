@@ -4,13 +4,13 @@ import java.util.*;
 
 public class MembershipManagement{
 
-    private List<Session> sessions;
-    private List<Coach> coaches;
-    private ArrayList<MemberFee> fees;
-    private MessageSystem messageSystem;
+    public List<Session> sessions;
+    public List<Coach> coaches;
+    public ArrayList<MemberFee> fees;
+    public MessageSystem messageSystem;
 
     //Initialize  the HashMap from the memberPayments method
-    private HashMap<String,int[]> memberPaid;
+    public HashMap<String,int[]> memberPaid;
 
     public MembershipManagement()
     {
