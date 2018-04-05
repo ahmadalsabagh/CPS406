@@ -40,7 +40,7 @@ public class MembershipManagement{
 
             for (int j = 0; j < temp.length; j++)
             {
-                if (temp[j][0] == userName)
+                if (temp[j][0].equals(userName))
                 {
                     return true;
                 }
@@ -57,12 +57,14 @@ public class MembershipManagement{
         {
             String temp = coaches.get(i).getName();
 
-            if (temp == coachName)
+            if (temp.equals(coachName))
             {
+                System.out.println("Passed");
                 return true;
             }
         }
 
+        System.out.println("Failed");
         return false;
     }
 
@@ -71,7 +73,7 @@ public class MembershipManagement{
     {
         String[] data = loadFile("treasurer.txt");
         for(String i : data){
-            if (i == treasurerLogin){return true;}
+            if (i.equals(treasurerLogin)){return true;}
         }
         return false;
     }
@@ -516,7 +518,7 @@ public class MembershipManagement{
 
             while(true)
             {
-                if (loadedData[dataCount] != "DONE COACH")
+                if (!loadedData[dataCount].equals("DONE COACH"))
                 {
                     if (newFrequency)
                     {
