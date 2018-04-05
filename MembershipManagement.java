@@ -577,4 +577,27 @@ public class MembershipManagement{
 
         return tempCoaches;
     }
+    
+    public boolean removeUserCompletely(String memberName)
+    {
+        for (int i = 0; i < fees.size(); i++)
+        {
+            if (fees.get(i).getName() == memberName)
+            {
+                if (fees.get(i).getFee() <= 0)
+                {
+                    for (int j = 0; j < sessions.size(); j++)
+                    {
+                        sessions.get(i).removeMember(memberName);
+                    }
+                    
+                    return true;
+                }
+                
+                return false;
+            }
+        }
+        
+        return false;
+    }
 }
