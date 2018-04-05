@@ -140,13 +140,6 @@ public class Login extends javax.swing.JFrame {
         System.out.println("Hello");
     }//GEN-LAST:event_logBtnActionPerformed
 
-    private MembershipManagement membershipManagement;
-
-    private void setup()
-    {
-        membershipManagement = new MembershipManagement();
-    }
-
     /**
      * @param args the command line arguments
      */
@@ -180,12 +173,12 @@ public class Login extends javax.swing.JFrame {
               new Login().setVisible(true);
             }
         });
-
-        Login login = new Login();
-        login.setup();
     }
+
   private class LoginAction implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+      private MembershipManagement membershipManagement = new MembershipManagement();
+
+      public void actionPerformed(ActionEvent e) {
       //What happens when u press login
           if(memberRb.isSelected())
           {
