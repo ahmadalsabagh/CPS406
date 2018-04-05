@@ -94,7 +94,7 @@ public class MembershipManagement{
             temp = coaches.get(i).getFrequency();
             temp2 = sessions.get(i).getMemberReportInfo();
 
-            for (int j = 0; j < temp.size(); i++)
+            for (int j = 0; j < temp.size(); j++)
             {
                 if(tempMap.containsKey(temp2[j][0]))
                 {
@@ -188,11 +188,11 @@ public class MembershipManagement{
         memberPaid = new HashMap<String,int[]>();
         for (int i = 0; i < sessions.size(); i++){
             temp = sessions.get(i).getMemberReportInfo();
+
             //loop thru 2d array
             for (int x = 0; x < temp.length; x++){
                 if (memberPaid.containsKey(temp[x][0])){
                     paidOrNot = memberPaid.get(temp[x][0]);
-                    System.out.println(paidOrNot[0]+ " " +paidOrNot[1]);
 
                     if (temp[x][1] == "true")
                     {
@@ -202,6 +202,7 @@ public class MembershipManagement{
                     memberPaid.put(temp[x][0], paidOrNot);
                 }
                 else{
+                    paidOrNot = new int[2];
                     paidOrNot[0] = 0;
                     paidOrNot[1] = 0;
 
@@ -222,7 +223,6 @@ public class MembershipManagement{
             int[] value = entry.getValue();
 
             paidOrNot = memberPaid.get(key);
-          System.out.println(paidOrNot[0] + paidOrNot[1]);
             paidOrNot[1] = value[0];
 
             memberPaid.put(key, paidOrNot);
@@ -234,21 +234,21 @@ public class MembershipManagement{
 
     private HashMap<String, int[]> updatePaymentsDue() {
         String[][] temp;
+        HashMap<String, int[]> testMap;
 
-        memberPaid = new HashMap<String, int[]>();
+        testMap = new HashMap<String, int[]>();
         for (int i = 0; i < sessions.size(); i++){
             temp = sessions.get(i).getMemberReportInfo();
 
             for (int j = 0; j < temp.length; j++){
-                if (!memberPaid.containsKey(temp[j][0])){
+                if (!testMap.containsKey(temp[j][0])){
                     int[] tempArr = {12 - i};
-
-                    memberPaid.put(temp[j][0], tempArr);
+                    testMap.put(temp[j][0], tempArr);
                 }
             }
         }
 
-        return memberPaid;
+        return testMap;
     }
 
 
@@ -349,6 +349,7 @@ public class MembershipManagement{
      System.out.println(usr.getFee());
      return usr;
     }
+
     /*
      * The top 10 people on the list of most practices attended will receive
      * a complimentary discount of %10 off for one class
@@ -489,7 +490,7 @@ public class MembershipManagement{
             {
                 for (int k = 0; k < currMembers[j].length; k++)
                 {
-                    writeData.add(currMembers[j][k] + "\n");
+                    writeData.add(currMembers[j][k]);
                 }
                 
             }
@@ -524,9 +525,6 @@ public class MembershipManagement{
                 }
                 
             }
-           
-            
-            
 
             writeData.add("DONE COACH");
         }
