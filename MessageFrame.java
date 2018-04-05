@@ -21,13 +21,13 @@ public class MessageFrame extends javax.swing.JFrame {
     public MessageFrame(MembershipManagement membership,Coach coach,Boolean dog) {
       this.membership = membership;
       this.coach = coach;
-      who=true;
+      who = true;
         initComponents();
     }
     public MessageFrame(MembershipManagement membership,Boolean dog)
     {
       this.membership = membership;
-      this.who =false;
+      this.who = false;
       initComponents();
     }  
     public MessageFrame(MembershipManagement membership,Coach coach)
@@ -63,7 +63,7 @@ public class MessageFrame extends javax.swing.JFrame {
         msgTxt = new javax.swing.JTextArea();
         sendBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
-        sendBtn.addActionListener(new MsgMembers());
+        sendBtn.addActionListener(new MsgButton());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,22 +144,22 @@ public class MessageFrame extends javax.swing.JFrame {
        
     }
     
-    private class MsgMembers implements ActionListener {
+    private class MsgButton implements ActionListener {
       public void actionPerformed(ActionEvent e) {
-        String[][] memberNames = coach.getSession().getMemberNames();
-        String message = msgTxt.getText();
-        for (int x = 0; x < memberNames.length; x++){
-          membership.messageSystem.createMessage(memberNames[x][0],message);
-        }          
-      }
-    }
-      
-      private class MsgTreasurer implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+        if (!who){
+          String[][] memberNames = coach.getSession().getMemberNames();
           String message = msgTxt.getText();
-            membership.messageSystem.createMessage("bossman444",message);         
+          for (int x = 0; x < memberNames.length; x++){
+            membership.messageSystem.createMessage(memberNames[x][0],message);
+          }
+        }
+        else {
+          String message = msgTxt.getText();
+          membership.messageSystem.createMessage("bossman444",message);  
         }
       }
+    }
+
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton cancelBtn;
