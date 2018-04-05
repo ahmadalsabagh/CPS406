@@ -5,19 +5,17 @@ import java.util.*;
 public class MembershipManagement{
 
     private List<Session> sessions;
+    private List<Coach> coaches;
     private ArrayList<MemberFee> fees;
     private MessageSystem messageSystem;
 
     //Initialize  the HashMap from the memberPayments method
     private HashMap<String,int[]> memberPaid;
 
-    private List<Coach> coaches = new ArrayList<Coach>();
-    private List<Treasurer> treasurers = new ArrayList<Treasurer>();
     public MembershipManagement()
     {
-        List<Session> sessions = loadSessionData();
-
-        //Load Coach's, Load Treasurers
+        sessions = loadSessionData();
+        coaches = loadCoachData();
 
         //Load messages as well
         MessageSystem messageSystem = new MessageSystem();
@@ -36,8 +34,6 @@ public class MembershipManagement{
 
     public boolean checkUserLogin(String userName)
     {
-        boolean isValid = false;
-
         for (int i = 0; i < sessions.size(); i++)
         {
             String[][] temp = sessions.get(i).getMemberNames();
@@ -46,20 +42,28 @@ public class MembershipManagement{
             {
                 if (temp[j][0] == userName)
                 {
-                    isValid = true;
-                    j = temp.length;
-                    i = sessions.size();
+                    return true;
                 }
             }
         }
 
-        return isValid;
+        return false;
     }
 
 
     public boolean checkCoachLogin(String coachName)
     {
-        return true;
+        for (int i = 0; i < coaches.size(); i++)
+        {
+            String temp = coaches.get(i).getName();
+
+            if (temp == coachName)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
@@ -539,8 +543,5 @@ public class MembershipManagement{
         }
 
         return tempCoaches;
-    }
-    public List<Treasurer> loadTreasurerData(){
-        
     }
 }
