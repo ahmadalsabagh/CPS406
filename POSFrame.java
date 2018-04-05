@@ -9,9 +9,19 @@ public class POSFrame extends javax.swing.JFrame {
      * Creates new form POSFrame
      */
 	
-    public POSFrame() {
-        initComponents();
+    public POSFrame(MembershipManagement membership, String memberName) {
+    	this.membership = membership;
+        this.memberName = memberName;
+        
+        pos = new posEvent(membership, memberName);
+    	
+    	initComponents();
+    	
+    	
+        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -22,7 +32,9 @@ public class POSFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        logoutBtn = new javax.swing.JButton();
+    	
+    	
+    	logoutBtn = new javax.swing.JButton();
         oneClassBtn = new javax.swing.JButton();
         twoClassBtn = new javax.swing.JButton();
         outstandingBtn = new javax.swing.JButton();
@@ -115,9 +127,10 @@ public class POSFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new POSFrame().setVisible(true);
+                new POSFrame(membership, memberName).setVisible(true);
             }
         });
+        
     }
     
     private class launchPOSOne implements ActionListener {
@@ -126,8 +139,10 @@ public class POSFrame extends javax.swing.JFrame {
           CardInfoFrame card = new CardInfoFrame();
           card.setVisible(true);
           
+          pos.acceptPayment(memberName, 1);
         	
           System.out.println("POS launched for one class");
+          System.out.println(memberName);
           
     }
     
@@ -137,7 +152,7 @@ public class POSFrame extends javax.swing.JFrame {
         	
         	CardInfoFrame card = new CardInfoFrame();
             card.setVisible(true);
-       
+            pos.acceptPayment(memberName, 2);
           System.out.println("POS launched for two classes");
           
     }
@@ -148,6 +163,8 @@ public class POSFrame extends javax.swing.JFrame {
         	
         	CardInfoFrame card = new CardInfoFrame();
             card.setVisible(true);
+            
+            pos.acceptPayment(memberName, 3);
        
           System.out.println("POS launched to settle balance");
           
@@ -160,6 +177,8 @@ public class POSFrame extends javax.swing.JFrame {
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton outstandingBtn;
     private javax.swing.JLabel balanceLbl;
-    
+    private static MembershipManagement membership;
+    private static String memberName;
+    posEvent pos;
     // End of variables declaration//GEN-END:variables
 }

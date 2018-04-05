@@ -139,7 +139,7 @@ public class MemberFrame extends javax.swing.JFrame {
     private class payFees implements ActionListener {
         public void actionPerformed(ActionEvent e) {
          
-          POSFrame pos = new POSFrame();
+          POSFrame pos = new POSFrame(membership, memberName);
           pos.setVisible(true);
          
           System.out.println("POS launched");
