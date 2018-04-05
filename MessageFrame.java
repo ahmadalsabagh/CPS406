@@ -147,22 +147,30 @@ public class MessageFrame extends javax.swing.JFrame {
     
     private class MsgButton implements ActionListener {
       public void actionPerformed(ActionEvent e) {
-        if (!who){
+        String message = msgTxt.getText();
+        
+     
+        if (who){
           String[][] memberNames = coach.getSession().getMemberNames();
-          String message = msgTxt.getText();
+          
           for (int x = 0; x < memberNames.length; x++){
             membership.messageSystem.createMessage(memberNames[x][0],message);
           }
         }
         else {
-          String message = msgTxt.getText();
+          
           membership.messageSystem.createMessage("bossman444",message);  
         }
+        System.out.println("Message was Sent");
+        CoachFrame coachFrame = new CoachFrame(membership,membership.coaches.get(membership.currCoach));
+        dispose();
       }
+      
     }
     
     private class CloseFrame implements ActionListener {
       public void actionPerformed(ActionEvent e) {
+         CoachFrame coachFrame = new CoachFrame(membership,membership.coaches.get(membership.currCoach));
         dispose();
       }
     }

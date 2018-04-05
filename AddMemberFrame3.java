@@ -14,9 +14,20 @@ public class AddMemberFrame extends javax.swing.JFrame {
     /**
      * Creates new form AddMemberFrame
      */
-    public AddMemberFrame() {
+     MembershipManagement membership;
+    public AddMemberFrame(MembershipManagement membership,Boolean dog) {
+      this.membership = membership;
         initComponents();
     }
+    public AddMemberFrame(MembershipManagement membership)
+    {
+      java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddMemberFrame(membership,true).setVisible(true);
+            }
+        });
+    }  
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,6 +179,14 @@ public class AddMemberFrame extends javax.swing.JFrame {
             }
         });
     }
+     private class addBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press add Button Attendance
+          System.out.println("Add Button Pressed");
+         // membership.coaches.get(Integer.parseInt(idTxt.getText())).addMember
+          
+    }
+ }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton addBtn;

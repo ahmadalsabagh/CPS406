@@ -167,6 +167,7 @@ public class CoachFrame extends javax.swing.JFrame  {
       //What happens when u press Message Memebers
           System.out.println("Message Button Pressed");
           MessageFrame messageFrame = new MessageFrame(membership,coach);
+          dispose();
           
     }
  }
@@ -182,6 +183,7 @@ public class CoachFrame extends javax.swing.JFrame  {
       //What happens when u press Message Treasurere
           System.out.println("Message Treasurer Button Pressed");
           MessageFrame messageFrame = new MessageFrame(membership);
+          dispose();
     }
  }
   private class PracticeFreqAction implements ActionListener {

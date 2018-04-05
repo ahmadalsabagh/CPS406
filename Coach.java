@@ -57,10 +57,13 @@ public class Coach
   }
   public void initializeArray()
   {
+    frequency = new ArrayList<int[]>();
    String[][] temp=session.getMemberReportInfo();
+   
    int[] blank ={0,0};
      for (int x = 0; x < temp.length; x++)
      {
+    
        frequency.add(blank);
        
      }

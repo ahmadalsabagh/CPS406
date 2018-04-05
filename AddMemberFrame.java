@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.*;  
+import java.awt.event.*;  
 
 
 /**
@@ -14,9 +16,20 @@ public class AddMemberFrame extends javax.swing.JFrame {
     /**
      * Creates new form AddMemberFrame
      */
-    public AddMemberFrame() {
+     MembershipManagement membership;
+    public AddMemberFrame(MembershipManagement membership,Boolean dog) {
+      this.membership = membership;
         initComponents();
     }
+    public AddMemberFrame(MembershipManagement membership)
+    {
+      java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddMemberFrame(membership,true).setVisible(true);
+            }
+        });
+    }  
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,7 +45,12 @@ public class AddMemberFrame extends javax.swing.JFrame {
         sessionLbl = new javax.swing.JLabel();
         idTxt = new javax.swing.JTextField();
         addBtn = new javax.swing.JButton();
+        addBtn.addActionListener(new addBtnAction());
         cancelBtn = new javax.swing.JButton();
+        addressLbl = new javax.swing.JLabel();
+        addressTxt = new javax.swing.JTextField();
+        phoneLbl = new javax.swing.JLabel();
+        phoneTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +68,16 @@ public class AddMemberFrame extends javax.swing.JFrame {
 
         cancelBtn.setText("Cancel");
 
+        addressLbl.setText("Address:");
+
+        phoneLbl.setText("Phone #:");
+
+        phoneTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneTxtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,34 +86,51 @@ public class AddMemberFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(sessionLbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nameLbl)
+                                .addGap(17, 17, 17)
+                                .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(sessionLbl)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(addressLbl)
+                                        .addComponent(phoneLbl))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(addressTxt)
+                                        .addComponent(phoneTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)))))
+                        .addGap(0, 15, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLbl)
                     .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addressLbl)
+                    .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phoneLbl)
+                    .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sessionLbl)
                     .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -98,6 +143,10 @@ public class AddMemberFrame extends javax.swing.JFrame {
     private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
     }                                       
+
+    private void phoneTxtActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
 
     /**
      * @param args the command line arguments
@@ -127,19 +176,28 @@ public class AddMemberFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddMemberFrame().setVisible(true);
-            }
-        });
+        
     }
+     private class addBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press add Button Attendance
+          System.out.println("Add Button Pressed");
+        membership.coaches.get(Integer.parseInt(idTxt.getText())).add(nameTxt.getText(),phoneTxt.getText(),"false",addressTxt.getText());
+        TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
+        dispose(); 
+    }
+ }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton addBtn;
+    private javax.swing.JLabel addressLbl;
+    private javax.swing.JTextField addressTxt;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JTextField idTxt;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nameTxt;
+    private javax.swing.JLabel phoneLbl;
+    private javax.swing.JTextField phoneTxt;
     private javax.swing.JLabel sessionLbl;
     // End of variables declaration                   
 }

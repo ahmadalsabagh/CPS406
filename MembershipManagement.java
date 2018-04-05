@@ -19,8 +19,8 @@ public class MembershipManagement{
         coaches = loadCoachData();
 
         //Load messages as well
-        MessageSystem messageSystem = new MessageSystem();
-
+        messageSystem = new MessageSystem();
+        
         memberPaid = memberPayments();
         fees = createFees();
 
@@ -192,6 +192,7 @@ public class MembershipManagement{
             for (int x = 0; x < temp.length; x++){
                 if (memberPaid.containsKey(temp[x][0])){
                     paidOrNot = memberPaid.get(temp[x][0]);
+                    System.out.println(paidOrNot[0]+ " " +paidOrNot[1]);
 
                     if (temp[x][1] == "true")
                     {
@@ -221,6 +222,7 @@ public class MembershipManagement{
             int[] value = entry.getValue();
 
             paidOrNot = memberPaid.get(key);
+          System.out.println(paidOrNot[0] + paidOrNot[1]);
             paidOrNot[1] = value[0];
 
             memberPaid.put(key, paidOrNot);
@@ -240,6 +242,7 @@ public class MembershipManagement{
             for (int j = 0; j < temp.length; j++){
                 if (!memberPaid.containsKey(temp[j][0])){
                     int[] tempArr = {12 - i};
+
                     memberPaid.put(temp[j][0], tempArr);
                 }
             }
@@ -325,6 +328,27 @@ public class MembershipManagement{
         return newFees;
     }
 
+    public Session getSession(int sessionId)
+    {
+     return (sessions.get(sessionId));
+    }
+    
+    public MemberFee getUserFees(String usrName)
+    {
+     MemberFee usr = null;
+      
+     for (int i = 0; i < fees.size(); i++)
+     {
+      if (fees.get(i).getName() == usrName)
+      {
+       usr = fees.get(i);
+       break;
+      }
+     }
+     
+     System.out.println(usr.getFee());
+     return usr;
+    }
     /*
      * The top 10 people on the list of most practices attended will receive
      * a complimentary discount of %10 off for one class
@@ -408,6 +432,7 @@ public class MembershipManagement{
             for (String text : fileText)
             {
                 writer.write(text);
+                writer.write("\n");
             }
 
             writer.close();
@@ -464,9 +489,11 @@ public class MembershipManagement{
             {
                 for (int k = 0; k < currMembers[j].length; k++)
                 {
-                    writeData.add(currMembers[j][k]);
+                    writeData.add(currMembers[j][k] + "\n");
                 }
+                
             }
+            
 
             Object[] temp = writeData.toArray();
             saveFile("sessions" + i + ".txt", Arrays.copyOf(temp, temp.length, String[].class));
@@ -479,12 +506,12 @@ public class MembershipManagement{
     {
         List<String> writeData = new ArrayList<String>();
 
-        writeData.add("" + coaches.size()+"\n");
+        writeData.add("" + coaches.size());
 
         for (int i = 0; i < coaches.size(); i++)
         {
-            writeData.add(coaches.get(i).getName()+"\n");
-            writeData.add("" + coaches.get(i).getSessionID()+"\n");
+            writeData.add(coaches.get(i).getName());
+            writeData.add("" + coaches.get(i).getSessionID());
 
             ArrayList<int[]> tempFrequency = coaches.get(i).getFrequency();
 
@@ -492,11 +519,16 @@ public class MembershipManagement{
             {
                 for (int k = 0; k < tempFrequency.get(j).length; k++)
                 {
-                    writeData.add("" + tempFrequency.get(j)[k]+"\n");
+                    
+                    writeData.add("" + tempFrequency.get(j)[k]);
                 }
+                
             }
+           
+            
+            
 
-            writeData.add("DONE COACH" +"\n");
+            writeData.add("DONE COACH");
         }
 
         Object[] temp = writeData.toArray();

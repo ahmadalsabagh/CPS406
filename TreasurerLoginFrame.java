@@ -62,6 +62,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
         membersBtn.setText("MemberList");
 
         logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new LogoutAction());
 
         msgBtn.setText("Message Coaches");
 
@@ -144,8 +145,28 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
     }
       private class addBtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-      //What happens when u press Message Memebers
-          System.out.println("Message Button Pressed");
+      //What happens when u press add Members
+          AddMemberFrame addMemberFrame = new AddMemberFrame(membership);
+          dispose();
+          
+       
+          
+    }
+      }
+        private class LogoutAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+          //What happens when u press Logout
+           
+          membership.saveSessionData(membership.sessions);
+          membership.saveCoachData(membership.coaches);
+             java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+              new Login().setVisible(true);
+            }
+        });
+          dispose();
+        
+          
        
           
     }

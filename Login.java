@@ -176,10 +176,12 @@ public class Login extends javax.swing.JFrame {
     }
 
   private class LoginAction implements ActionListener {
-      private MembershipManagement membershipManagement = new MembershipManagement();
-
+      private MembershipManagement membershipManagement;
       public void actionPerformed(ActionEvent e) {
       //What happens when u press login
+        membershipManagement = new MembershipManagement();
+
+        System.out.println(membershipManagement.messageSystem);
           if(memberRb.isSelected())
           {
               if (membershipManagement.checkUserLogin(userTxt.getText()))
@@ -203,6 +205,7 @@ public class Login extends javax.swing.JFrame {
           {
               if (membershipManagement.checkCoachLogin(userTxt.getText()))
               {
+                System.out.println(membershipManagement.currCoach);
                 CoachFrame coachFrame = new CoachFrame(membershipManagement,membershipManagement.coaches.get(membershipManagement.currCoach));
                 dispose();
                   
