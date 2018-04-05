@@ -64,6 +64,7 @@ public class MessageFrame extends javax.swing.JFrame {
         sendBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         sendBtn.addActionListener(new MsgButton());
+        cancelBtn.addActionListener(new CloseFrame());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,6 +158,12 @@ public class MessageFrame extends javax.swing.JFrame {
           String message = msgTxt.getText();
           membership.messageSystem.createMessage("bossman444",message);  
         }
+      }
+    }
+    
+    private class CloseFrame implements ActionListener {
+      public void actionPerformed(ActionEvent e) {
+        dispose();
       }
     }
 
