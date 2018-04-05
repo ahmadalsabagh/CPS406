@@ -10,7 +10,8 @@ public class Session
   private String[][] members = null;
   
   public Session(int newMonth) {
-    this.month = newMonth;
+      this.month = newMonth;
+      members = new String[0][];
   }
   
   public void addMember(String name, String number, String isPaid, String address) {
