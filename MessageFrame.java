@@ -14,9 +14,36 @@ public class MessageFrame extends javax.swing.JFrame {
     /**
      * Creates new form MessageFrame
      */
-    public MessageFrame() {
+  MembershipManagement membership;
+  Coach coach;
+    public MessageFrame(MembershipManagement membership,Coach coach,Boolean dog) {
+      this.membership = membership;
+      this.coach = coach;
         initComponents();
     }
+    public MessageFrame(MembershipManagement membership,Boolean dog)
+    {
+      this.membership = membership;
+      initComponents();
+    }  
+    public MessageFrame(MembershipManagement membership,Coach coach)
+    {
+      
+    java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MessageFrame(membership,coach,true).setVisible(true);
+            }
+        });
+      
+    }
+    public MessageFrame(MembershipManagement membership)
+    {
+      java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MessageFrame(membership,true).setVisible(true);
+            }
+        });
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,11 +136,7 @@ public class MessageFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MessageFrame().setVisible(true);
-            }
-        });
+       
     }
 
     // Variables declaration - do not modify                     
