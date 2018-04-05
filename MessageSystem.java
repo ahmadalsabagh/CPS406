@@ -13,12 +13,12 @@ public class MessageSystem
   {
     this.messages=messages;
   }
-  public void CreateMessage(String name,String message)
+  public void createMessage(String name,String message)
   {
     String[] temp = {name,message};
     messages.add(temp);
   }
-  public void ShowMessages(String name)
+  public void showMessages(String name)
   {
    for(int x=0;x<messages.size();x++)
    {

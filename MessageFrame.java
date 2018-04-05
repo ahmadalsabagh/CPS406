@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.awt.*;  
+import java.awt.event.*; 
 
 /**
  *
@@ -16,14 +17,17 @@ public class MessageFrame extends javax.swing.JFrame {
      */
   MembershipManagement membership;
   Coach coach;
+  Boolean who;
     public MessageFrame(MembershipManagement membership,Coach coach,Boolean dog) {
       this.membership = membership;
       this.coach = coach;
+      who=true;
         initComponents();
     }
     public MessageFrame(MembershipManagement membership,Boolean dog)
     {
       this.membership = membership;
+      this.who =false;
       initComponents();
     }  
     public MessageFrame(MembershipManagement membership,Coach coach)
@@ -142,9 +146,9 @@ public class MessageFrame extends javax.swing.JFrame {
     
     private class MsgMembers implements ActionListener {
       public void actionPerformed(ActionEvent e) {
-        String[][] memberNames = coach.session.getMemberNames();
+        String[][] memberNames = coach.getSession().getMemberNames();
         String message = msgTxt.getText();
-        for (int x = 0; x < memberNames.length(); x++){
+        for (int x = 0; x < memberNames.length; x++){
           membership.messageSystem.createMessage(memberNames[x][0],message);
         }          
       }

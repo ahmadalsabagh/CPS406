@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.awt.*;  
+import java.awt.event.*; 
 
 /**
  *
@@ -14,9 +15,20 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
     /**
      * Creates new form TreasurerFrame
      */
-    public TreasurerLoginFrame() {
+  MembershipManagement membership;
+    public TreasurerLoginFrame(MembershipManagement membership,Boolean dog) {
+      this.membership = membership;
         initComponents();
     }
+    public TreasurerLoginFrame(MembershipManagement membership)
+    {
+     java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TreasurerLoginFrame(membership,true).setVisible(true);
+            }
+        });
+      
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,6 +40,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         addBtn = new javax.swing.JButton();
+        addBtn.addActionListener(new addBtnAction());
         removeBtn = new javax.swing.JButton();
         accountsBtn = new javax.swing.JButton();
         coachesBtn = new javax.swing.JButton();
@@ -127,12 +140,16 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TreasurerLoginFrame().setVisible(true);
-            }
-        });
+        
     }
+      private class addBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press Message Memebers
+          System.out.println("Message Button Pressed");
+       
+          
+    }
+ }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton accountsBtn;

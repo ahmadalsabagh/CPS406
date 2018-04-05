@@ -194,7 +194,8 @@ public class Login extends javax.swing.JFrame {
           {
               if (membershipManagement.checkTreasurerLogin(userTxt.getText()))
               {
-               
+                  TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membershipManagement);
+                  dispose();
                   System.out.println("User logged in");
               }
           }

@@ -25,10 +25,10 @@ public class MembershipManagement{
         fees = createFees();
 
         //test:How to use MessageSystem
-        messageSystem.CreateMessage("Elton","Practice on Thursday Be There or be Square");
-        messageSystem.CreateMessage("Elton","Can u Switch Shifts with me");
-        messageSystem.CreateMessage("Ahmad","Pay ur Fucking Bills");
-        messageSystem.ShowMessages("Elton");
+        messageSystem.createMessage("Elton","Practice on Thursday Be There or be Square");
+        messageSystem.createMessage("Elton","Can u Switch Shifts with me");
+        messageSystem.createMessage("Ahmad","Pay ur Fucking Bills");
+        messageSystem.showMessages("Elton");
         //end of Test
     }
 
@@ -363,7 +363,7 @@ public class MembershipManagement{
     public void createMessage(String name,String message)
     {
         messageSystem= new MessageSystem();
-        messageSystem.CreateMessage(name,message);
+        messageSystem.createMessage(name,message);
     }
 
     /*
