@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.awt.*;  
+import sun.rmi.runtime.Log;
+
+import java.awt.*;
 import java.awt.event.*;  
 import javax.swing.*;
 /**
@@ -138,6 +140,13 @@ public class Login extends javax.swing.JFrame {
         System.out.println("Hello");
     }//GEN-LAST:event_logBtnActionPerformed
 
+    private MembershipManagement membershipManagement;
+
+    private void setup()
+    {
+        membershipManagement = new MembershipManagement();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -171,23 +180,36 @@ public class Login extends javax.swing.JFrame {
               new Login().setVisible(true);
             }
         });
- 
+
+        Login login = new Login();
+        login.setup();
     }
   private class LoginAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-      //What happens when u press login 
-          System.out.println("Login Button Pressed");
+      //What happens when u press login
           if(memberRb.isSelected())
           {
-            System.out.println("Login Button Pressed as a member");
+              if (membershipManagement.checkUserLogin(userTxt.getText()))
+              {
+                  //redirect to next page passing in the membershipManagement and user type/name
+                  System.out.println("User logged in");
+              }
           } 
           if(treasurerRb.isSelected())
           {
-            System.out.println("Login Button Pressed as a Treasurer");
+              if (membershipManagement.checkTreasurerLogin(userTxt.getText()))
+              {
+                  //redirect to next page passing in the membershipManagement and user type/name
+                  System.out.println("User logged in");
+              }
           }
           if(coachRb.isSelected())
           {
-            System.out.println("Login Button Pressed as a Coach");
+              if (membershipManagement.checkCoachLogin(userTxt.getText()))
+              {
+                  //redirect to next page passing in the membershipManagement and user type/name
+                  System.out.println("User logged in");
+              }
           }
           
     }
