@@ -166,6 +166,7 @@ public class CoachFrame extends javax.swing.JFrame  {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press Message Memebers
           System.out.println("Message Button Pressed");
+          MessageFrame messageFrame = new MessageFrame(membership,coach);
           
     }
  }
@@ -180,7 +181,7 @@ public class CoachFrame extends javax.swing.JFrame  {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press Message Treasurere
           System.out.println("Message Treasurer Button Pressed");
-          
+          MessageFrame messageFrame = new MessageFrame(membership);
     }
  }
   private class PracticeFreqAction implements ActionListener {
