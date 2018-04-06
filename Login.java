@@ -5,6 +5,7 @@
  */
 import sun.rmi.runtime.Log;
 
+import java.util.*;
 import java.awt.*;
 import java.awt.event.*;  
 import javax.swing.*;
@@ -180,36 +181,79 @@ public class Login extends javax.swing.JFrame {
       public void actionPerformed(ActionEvent e) {
       //What happens when u press login
         membershipManagement = new MembershipManagement();
-
         System.out.println(membershipManagement.messageSystem);
           if(memberRb.isSelected())
           {
               if (membershipManagement.checkUserLogin(userTxt.getText()))
               {
+                  ArrayList<String> messages = new ArrayList<String>();
                   MemberFrame memberFrame = new MemberFrame(membershipManagement,userTxt.getText());
                   dispose();
                   //redirect to next page passing in the membershipManagement and user type/name
                   System.out.println("User logged in");
+                  messages = membershipManagement.messageSystem.showMessages(userTxt.getText());
+                  if (messages.isEmpty()){
+                    FeedBackFrame frame = new FeedBackFrame("You have 0 unread messages in your inbox");
+                    frame.setVisible(true);
+                  }
+                  else{
+                    FeedBackFrame frame = new FeedBackFrame("You have " + messages.size() + " unread messages in your inbox");
+                    frame.setVisible(true);
+                  }
+                  for (int x = 0; x < messages.size(); x++){
+                    FeedBackFrame temp = new FeedBackFrame(messages.get(x));
+                    temp.setVisible(true);
+                  }
+                  
               }
           } 
           if(treasurerRb.isSelected())
           {
               if (membershipManagement.checkTreasurerLogin(userTxt.getText()))
               {
+                  ArrayList<String> messages = new ArrayList<String>();
                   TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membershipManagement);
                   dispose();
                   System.out.println("User logged in");
+                  messages = membershipManagement.messageSystem.showMessages("bossman444");
+                  if (messages.isEmpty()){
+                    FeedBackFrame frame = new FeedBackFrame("You have 0 unread messages in your inbox");
+                    frame.setVisible(true);
+                  }
+                  else{
+                    FeedBackFrame frame = new FeedBackFrame("You have " + messages.size() + " unread messages in your inbox");
+                    frame.setVisible(true);
+                  }
+                  for (int x = 0; x < messages.size(); x++){
+                    FeedBackFrame temp = new FeedBackFrame(messages.get(x));
+                    temp.setVisible(true);
+                  }
+                  
               }
           }
           if(coachRb.isSelected())
           {
               if (membershipManagement.checkCoachLogin(userTxt.getText()))
               {
+                ArrayList<String> messages = new ArrayList<String>();
                 System.out.println(membershipManagement.currCoach);
                 CoachFrame coachFrame = new CoachFrame(membershipManagement,membershipManagement.coaches.get(membershipManagement.currCoach));
                 dispose();
                   
                   System.out.println("User logged in");
+                  messages = membershipManagement.messageSystem.showMessages(userTxt.getText());
+                  if (messages.isEmpty()){
+                    FeedBackFrame frame = new FeedBackFrame("You have 0 unread messages in your inbox");
+                    frame.setVisible(true);
+                  }
+                  else{
+                    FeedBackFrame frame = new FeedBackFrame("You have " + messages.size() + " unread messages in your inbox");
+                    frame.setVisible(true);
+                  }
+                  for (int x = 0; x < messages.size(); x++){
+                    FeedBackFrame temp = new FeedBackFrame(messages.get(x));
+                    temp.setVisible(true);
+                  }
               }
           }
           

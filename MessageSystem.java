@@ -18,13 +18,14 @@ public class MessageSystem
     String[] temp = {name,message};
     messages.add(temp);
   }
-  public void showMessages(String name)
+  public ArrayList<String> showMessages(String name)
   {
+    ArrayList<String> temp = new ArrayList<String>();
    for(int x=0;x<messages.size();x++)
    {
      if(messages.get(x)[0]==name)
-     System.out.println(messages.get(x)[1]);
+       temp.add(messages.get(x)[1]);
    }
+   return temp;
   } 
-  
 }

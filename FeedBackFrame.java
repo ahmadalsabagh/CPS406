@@ -10,13 +10,19 @@
  * @author elton
  */
 public class FeedBackFrame extends javax.swing.JFrame {
-
+  private String message;
     /**
      * Creates new form FeedBackFrame
      */
     public FeedBackFrame() {
         initComponents();
     }
+    
+    public FeedBackFrame(String message){
+      this.message = message;
+      initComponents();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,7 +38,7 @@ public class FeedBackFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Warning Message Goes Here");
+        jLabel1.setText(message);
 
         okBtn.setText("OK");
 
