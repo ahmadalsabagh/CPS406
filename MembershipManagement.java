@@ -205,7 +205,7 @@ public class MembershipManagement{
                     paidOrNot[0] = 0;
                     paidOrNot[1] = 0;
 
-                    if (temp[x][1] == "true")
+                    if (temp[x][1].equals("true"))
                     {
                         paidOrNot[0]++;
                     }
@@ -262,7 +262,7 @@ public class MembershipManagement{
 
             paidOrNot = memberPaid.get(key);
 
-            double fee = paidOrNot[1] * 100;
+            double fee = paidOrNot[1] * 100 - paidOrNot[0] * 100;
 
             newFees.add(new MemberFee(fee, key));
         }
@@ -286,7 +286,7 @@ public class MembershipManagement{
         for (String key : memberPaid.keySet()){
             if (memberPaid.get(key)[1] > 1){
                 for (int i = 0; i < newFees.size(); i++){
-                    if (newFees.get(i).getName() == key){
+                    if (newFees.get(i).getName().equals(key)){
                         newFees.get(i).applyPenalty(10.0);
                         i = newFees.size();
                     }
@@ -338,7 +338,7 @@ public class MembershipManagement{
       
      for (int i = 0; i < fees.size(); i++)
      {
-      if (fees.get(i).getName() == usrName)
+      if (fees.get(i).getName().equals(usrName))
       {
        usr = fees.get(i);
        break;
