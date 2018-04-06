@@ -6,10 +6,7 @@
  k*/
 import java.awt.*;  
 import java.awt.event.*; 
-=======
- */
 
->>>>>>> 3a69da088ab4e7ac02451c70c1a010d9c101abb3
 
 /**
  *
@@ -20,8 +17,18 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
     /**
      * Creates new form RemoveMemberFrame
      */
-    public RemoveMemberFrame() {
+  MembershipManagement membership;
+  public RemoveMemberFrame(MembershipManagement membership,Boolean dog) {
+        this.membership = membership;
         initComponents();
+  }
+    public RemoveMemberFrame(MembershipManagement membership) {
+        initComponents();
+           java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RemoveMemberFrame(membership,true).setVisible(true);
+            }
+        });
     }
 
     /**
@@ -36,7 +43,9 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
         nameLbl = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
         removeBtn = new javax.swing.JButton();
+        removeBtn.addActionListener(new RemoveAction());
         cancelBtn = new javax.swing.JButton();
+        cancelBtn.addActionListener(new CancelAction());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,11 +118,27 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RemoveMemberFrame().setVisible(true);
-            }
-        });
+     
+    }
+    private class RemoveAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      if(membership.removeUserCompletely(nameTxt.getText()))
+      {  
+        
+      } 
+      else 
+      {
+        
+        
+      }  
+    }
+ }
+        private class CancelAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+       TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
+                  dispose();
+        }
+          
     }
 
     // Variables declaration - do not modify                     

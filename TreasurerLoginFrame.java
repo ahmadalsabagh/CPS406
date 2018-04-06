@@ -153,6 +153,15 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
         }
           
     }
+       private class RemoveBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press add Members
+          RemoveMemberFrame addMemberFrame = new RemoveMemberFrame(membership);
+          dispose();
+          
+        }
+          
+    }
          private class AccountsAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press add Members
