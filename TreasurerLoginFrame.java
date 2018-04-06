@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -154,6 +155,30 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
         }
           
     } 
+      
+      private class coachesBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+          //What happens when u press coach list
+          SessionMemberView sessionViewer = new SessionMemberView(membership.coaches);
+          dispose();
+          
+        }
+        
+      }
+      
+      private class memberBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+          //What happens when u press Members list
+          ArrayList<String[]> names = new ArrayList<String[]>();
+          for (int x = 0; x < membership.sessions.size(); x++){
+           names.add(membership.sessions.get(x).getMemberNames());
+          }
+          SessionMemberView sessionViewer = new SessionMemberView(names);
+          dispose();
+          
+        }
+        
+      }
       private class RemoveBtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press add Members

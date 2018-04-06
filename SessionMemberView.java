@@ -20,13 +20,35 @@ public class SessionMemberView extends javax.swing.JFrame {
         initComponents();
     }
     
+    //coach's view
     public SessionMemberView(String[][] memberNames){
       initComponents();
       for (int x = 0; x < memberNames.length; x++){
         memberList.addItem(memberNames[x][0]);
       }
-
     }
+    
+    //treasurer's view
+    public SessionMemberView(ArrayList<String> coachNames){
+      initComponents();
+      for (int x = 0; x < coachNames.size(); x++){
+        memberList.addItem(coachName.get(x));
+      } 
+    }
+    
+    //treasurer's view
+    //no duplicates
+    //membernames is every member in every session
+    public SessionMemberView(ArrayList<String> memberNames){
+      initComponents();
+      ArrayList<String> temp = new ArrayList<String>();
+      for (int x = 0; x < memberNames.size(); x++){
+        if (!memberNames.get(x)){
+          memberList.addItem(memberNames.get(x));
+        }
+      }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
