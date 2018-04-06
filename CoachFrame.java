@@ -202,8 +202,10 @@ public class CoachFrame extends javax.swing.JFrame  {
  }
   private class ViewMemberAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-          String memberNames[][] = coach.getSession().getMemberNames();
-       
+          //String memberNames[][] = coach.getSession().getMemberNames();
+          String memberNames[][] = {
+            {"bob"},{"silly"},{"billy"}, {"bonnie"}
+          };
           SessionMemberView memberViewer = new SessionMemberView(memberNames);
           //What happens when u press ViewMembers
           memberViewer.setVisible(true);

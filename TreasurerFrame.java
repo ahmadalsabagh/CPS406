@@ -8,17 +8,9 @@ public class TreasurerFrame extends javax.swing.JFrame {
      * Creates new form POSFramek
      */
     public MembershipManagement membership;
-    public TreasurerFrame(MembershipManagement membership,Boolean dog) {
+    public TreasurerFrame(MembershipManagement membership) {
         this.membership = membership;
         initComponents();
-    }
-    public TreasurerFrame(MembershipManagement membership) {
-       java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TreasurerFrame(membership,true).setVisible(true);
-            }
-        });
-      
     }
 
     /**
@@ -39,7 +31,6 @@ public class TreasurerFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logoutBtn.setText("Logout");
-        logoutBtn.addActionListener(new LogoutAction());
 
         invoiceBtn.setText("Session Invoice");
         invoiceBtn.addActionListener(new launchInvoice());
@@ -122,7 +113,11 @@ public class TreasurerFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-       
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TreasurerFrame(membership).setVisible(true);
+            }
+        });
     }
     
     private class launchInvoice implements ActionListener {
@@ -133,13 +128,6 @@ public class TreasurerFrame extends javax.swing.JFrame {
     }
     
 }
-    private class LogoutAction implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-          
-        TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
-                  dispose();
-        }
-    }
     private class launchMemStat implements ActionListener {
         public void actionPerformed(ActionEvent e) {
        

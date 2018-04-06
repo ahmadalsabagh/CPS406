@@ -2,9 +2,14 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+<<<<<<< HEAD
  k*/
 import java.awt.*;  
 import java.awt.event.*; 
+=======
+ */
+
+>>>>>>> 3a69da088ab4e7ac02451c70c1a010d9c101abb3
 
 /**
  *
@@ -15,20 +20,9 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
     /**
      * Creates new form RemoveMemberFrame
      */
-      MembershipManagement membership;
-    public RemoveMemberFrame(MembershipManagement membership,Boolean dog) {
-      this.membership=membership;
+    public RemoveMemberFrame() {
         initComponents();
     }
-    public RemoveMemberFrame(MembershipManagement membership)
-    {
-     java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RemoveMemberFrame(membership,true).setVisible(true);
-            }
-        });
-      
-    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,9 +36,7 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
         nameLbl = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
         removeBtn = new javax.swing.JButton();
-        removeBtn.addActionListener(new RemoveBtnAction());
         cancelBtn = new javax.swing.JButton();
-        cancelBtn.addActionListener(new CancelBtnAction());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,31 +109,13 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RemoveMemberFrame().setVisible(true);
+            }
+        });
     }
- private class RemoveBtnAction implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-      //What happens when u press Session Attendance
-          if(membership.removeUserCompletely(nameTxt.getText()))
-          {
-           //FeedBackFrame feedBackFrame = new FeedBackFrame("Member has been removed");
-          }
-          else
-          {
-           //FeedBackFrame feedBackFrame = new FeedBackFrame("Member has unpaid Debts or member is not in the System");
-          }
-           
-          
-    }
- }
-  private class CancelBtnAction implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-      //What happens when u press Session Attendance
-        TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
-                  dispose();
-          
-    }
- }
+
     // Variables declaration - do not modify                     
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel nameLbl;
