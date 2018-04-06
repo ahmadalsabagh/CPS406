@@ -1,3 +1,5 @@
+import java.awt.*;
+import java.awt.event.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,6 +25,12 @@ public class FeedBackFrame extends javax.swing.JFrame {
       initComponents();
     }
     
+    private class CloseFrame implements ActionListener {
+      public void actionPerformed(ActionEvent e) {
+        dispose();
+      }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +43,7 @@ public class FeedBackFrame extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         okBtn = new javax.swing.JButton();
-
+        okBtn.addActionListener(new CloseFrame());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText(message);

@@ -28,7 +28,6 @@ public class MembershipManagement{
         messageSystem.createMessage("Elton","Practice on Thursday Be There or be Square");
         messageSystem.createMessage("Elton","Can u Switch Shifts with me");
         messageSystem.createMessage("Ahmad","Pay ur Fucking Bills");
-        messageSystem.showMessages("Elton");
         //end of Test
     }
 
