@@ -53,7 +53,7 @@ public class POSFrame extends javax.swing.JFrame {
         outstandingBtn.setText("Pay Outstanding");
         outstandingBtn.addActionListener(new launchPOSZero());
 
-        balanceLbl.setText("Balance: $XX.XX"); //TODO change balance to actual member balance
+        balanceLbl.setText("Balance: " + membership.getUserFees(memberName).getFee());
         balanceLbl.setToolTipText("");
 
 
@@ -135,14 +135,14 @@ public class POSFrame extends javax.swing.JFrame {
     
     private class launchPOSOne implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-       
-          CardInfoFrame card = new CardInfoFrame();
-          card.setVisible(true);
           
           pos.acceptPayment(memberName, 1);
         	
           System.out.println("POS launched for one class");
           System.out.println(memberName);
+          
+          CardInfoFrame card = new CardInfoFrame(membership, memberName, pos);
+          card.setVisible(true);
           
     }
     
@@ -150,10 +150,10 @@ public class POSFrame extends javax.swing.JFrame {
     private class launchPOSTwo implements ActionListener {
         public void actionPerformed(ActionEvent e) {
         	
-        	CardInfoFrame card = new CardInfoFrame();
-            card.setVisible(true);
             pos.acceptPayment(memberName, 2);
           System.out.println("POS launched for two classes");
+          CardInfoFrame card = new CardInfoFrame(membership, memberName, pos);
+          card.setVisible(true);
           
     }
   }
@@ -161,12 +161,13 @@ public class POSFrame extends javax.swing.JFrame {
     private class launchPOSZero implements ActionListener {
         public void actionPerformed(ActionEvent e) {
         	
-        	CardInfoFrame card = new CardInfoFrame();
-            card.setVisible(true);
+        	
             
             pos.acceptPayment(memberName, 3);
        
           System.out.println("POS launched to settle balance");
+          CardInfoFrame card = new CardInfoFrame(membership, memberName, pos);
+          card.setVisible(true);
           
     }
   }
