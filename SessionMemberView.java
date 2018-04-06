@@ -37,7 +37,7 @@ public class SessionMemberView extends javax.swing.JFrame {
           memberList.addItem(names.get(x));
         } 
       }
-      else {
+      if (who.equals("member")){
         List<String> temp = new List<String>();
         for (int x = 0; x < names.size(); x++){
           if (!memberList.getItem(x).contains(names.get(x))){
