@@ -19,7 +19,7 @@ public class MembershipManagement{
         coaches = loadCoachData();
 
         //Load messages as well
-        messageSystem = new MessageSystem();
+        messageSystem = loadMessageSystem();
         
         memberPaid = memberPayments();
         fees = createFees();
@@ -598,5 +598,33 @@ public class MembershipManagement{
         }
         
         return false;
+    }
+
+    public MessageSystem loadMessageSystem()
+    {
+        MessageSystem temp = new MessageSystem();
+        String[] loadedData = loadFile("messageSystem.txt");
+
+        for (int i = 0; i < loadedData.length; i++)
+        {
+            temp.createMessage(loadedData[i], loadedData[++i]);
+        }
+
+        return temp;
+    }
+
+    public void saveMessageSystem()
+    {
+        List<String> writeData = new ArrayList<String>();
+        List<String[]> tempMessages = messageSystem.getMessages();
+
+        for (int i = 0; i < tempMessages.size(); i++)
+        {
+            writeData.add(tempMessages.get(i)[0]);
+            writeData.add(tempMessages.get(i)[1]);
+        }
+
+        Object[] temp = writeData.toArray();
+        saveFile("messageSystem.txt", Arrays.copyOf(temp, temp.length, String[].class));
     }
 }
