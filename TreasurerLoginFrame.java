@@ -163,7 +163,12 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
       private class coachesBtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           //What happens when u press coach list
-          SessionMemberView sessionViewer = new SessionMemberView(membership.coaches, "coach");
+            ArrayList<String> names = new ArrayList<String>();
+            for (int i = 0; i < membership.coaches.size(); i++)
+            {
+                names.add(membership.coaches.get(i).getName());
+            }
+          SessionMemberView sessionViewer = new SessionMemberView(names, "coach");
           dispose();
           
         }
@@ -173,10 +178,19 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
       private class memberBtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           //What happens when u press Members list
-          ArrayList<String[]> names = new ArrayList<String[]>();
-          for (int x = 0; x < membership.sessions.size(); x++){
-           //names.add(membership.sessions.get(x).getMemberNames());////////////////// fix plz
-          }
+          ArrayList<String> names = new ArrayList<String>();
+            for (int i = 0; i < membership.sessions.size(); i++)
+            {
+                String[][] temp = membership.sessions.get(i).getMemberNames();
+
+                for (int j = 0; j < temp.length; j++)
+                {
+                    if (!names.contains(temp[j][0]))
+                    {
+                        names.add(temp[j][0]);
+                    }
+                }
+            }
           SessionMemberView sessionViewer = new SessionMemberView(names, "member");
           dispose();
           
