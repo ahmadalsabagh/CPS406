@@ -1,11 +1,8 @@
 12
 JohnCollins
 0
-<<<<<<< HEAD
 0
 0
-=======
->>>>>>> parent of cf41faf... for daniel
 DONE COACH
 BobWalker
 1
