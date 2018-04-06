@@ -1,4 +1,5 @@
 /*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,7 +17,7 @@ public class CardInfoFrame extends javax.swing.JFrame {
     /**
      * Creates new form java
      */
-    public CardInfoFrame() {
+    public CardInfoFrame(MembershipManagement management, String memberName, posEvent pos) {
         initComponents();
     }
 
@@ -45,7 +46,7 @@ public class CardInfoFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         balanceLbl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        balanceLbl.setText("Balance: ");
+        balanceLbl.setText("Balance: " + membership.getUserFees(memberName).getFee());
 
         jLabel2.setText("/");
 
@@ -170,7 +171,7 @@ public class CardInfoFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CardInfoFrame().setVisible(true);
+                new CardInfoFrame(membership, memberName, pos).setVisible(true);
             }
         });
     }
@@ -178,7 +179,11 @@ public class CardInfoFrame extends javax.swing.JFrame {
     private class finalizePayment implements ActionListener {
         public void actionPerformed(ActionEvent e) {
         	
-       
+        	int sessionId = Integer.parseInt(idTxt.getText());
+        	
+        	pos.scheduleSession(sessionId, pos.type);
+        	
+        	//membership.saveSessionData(membership.sessions);
           System.out.println("Payment finalized");
           
     }
@@ -197,5 +202,8 @@ public class CardInfoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton payBtn;
+    private static MembershipManagement membership;
+    private static String memberName;
+    private static posEvent pos;
     // End of variables declaration                   
 }
