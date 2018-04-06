@@ -27,5 +27,9 @@ public class MessageSystem
        temp.add(messages.get(x)[1]);
    }
    return temp;
-  } 
+  }
+  public ArrayList<String[]> getMessages()
+  {
+    return messages;
+  }
 }
