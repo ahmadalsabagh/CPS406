@@ -129,4 +129,9 @@ public class Session
     
     return temp;
   }
+  
+  public void setIsPaid(int id, String status)
+  {
+	  members[id][1] = status;
+  }
 }
