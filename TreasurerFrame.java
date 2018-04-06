@@ -7,7 +7,9 @@ public class TreasurerFrame extends javax.swing.JFrame {
     /**
      * Creates new form POSFrame
      */
-    public TreasurerFrame() {
+    public MembershipManagement membership;
+    public TreasurerFrame(MembershipManagement membership) {
+        this.membership = membership;
         initComponents();
     }
 
@@ -113,7 +115,7 @@ public class TreasurerFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TreasurerFrame().setVisible(true);
+                new TreasurerFrame(membership).setVisible(true);
             }
         });
     }
