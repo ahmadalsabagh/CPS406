@@ -26,7 +26,7 @@ public class Session
     }
     else
     {
-      members = addIndex(name, number, isPaid, address);
+      members = addIndex(name, isPaid, number, address);
     }
   }
   
