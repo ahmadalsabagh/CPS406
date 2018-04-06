@@ -35,15 +35,16 @@ public class Treasurer {
   public int paidAccounts(Session current) {
   // this.current = current;
    String[][] temp = current.getMemberReportInfo();
+   int paid = 0;
    for (int i = 0; i < temp.length; i++)
          {
              if (temp[i][2] == "true")
              {
-              this.paidUp++;
+              paid++;
              }
          }
    
-   return paidUp;
+   return paid;
   }
   
  //Returns a String value containing information pertaining to club revenue, expenses, and profit for the session.
@@ -51,6 +52,7 @@ public class Treasurer {
    String[][] temp = current.getMemberReportInfo();
    final int hall_pay = 1500;
    final int coach_pay = 500;
+   this.paidUp = paidAccounts(current);
    //Other expenses?
    
    int num_members = temp.length;
