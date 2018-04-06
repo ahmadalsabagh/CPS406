@@ -47,6 +47,7 @@ public class AddMemberFrame extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         addBtn.addActionListener(new addBtnAction());
         cancelBtn = new javax.swing.JButton();
+        cancelBtn.addActionListener(new cancelBtnAction());
         addressLbl = new javax.swing.JLabel();
         addressTxt = new javax.swing.JTextField();
         phoneLbl = new javax.swing.JLabel();
@@ -178,15 +179,22 @@ public class AddMemberFrame extends javax.swing.JFrame {
         /* Create and display the form */
         
     }
-     private class addBtnAction implements ActionListener {
+    private class addBtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press add Button Attendance
           System.out.println("Add Button Pressed");
         membership.coaches.get(Integer.parseInt(idTxt.getText())).add(nameTxt.getText(),phoneTxt.getText(),"false",addressTxt.getText());
         TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
         dispose(); 
+       }
     }
- }
+    private class cancelBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e){
+            System.out.println("Cancel Button Pressed");
+            TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
+            dispose(); 
+        }
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton addBtn;
