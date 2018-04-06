@@ -14,7 +14,7 @@ public class Session
       members = new String[0][];
   }
   
-  public void addMember(String name, String number, String isPaid, String address) {
+  public void addMember(String name, String isPaid, String number, String address) {
     if(members == null){
       members = new String[1][];
       
@@ -111,7 +111,7 @@ public class Session
     return temp;
   }
   
-  private String[][] addIndex(String name, String number, String isPaid, String address) {
+  private String[][] addIndex(String name, String isPaid, String number, String address) {
     String[][] temp = new String[members.length + 1][4];
     
     for (int i = 0; i < members.length; i++)
