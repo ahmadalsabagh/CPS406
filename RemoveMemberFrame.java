@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.awt.*;  
+import java.awt.event.*; 
 
 /**
  *
@@ -14,9 +15,20 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
     /**
      * Creates new form RemoveMemberFrame
      */
-    public RemoveMemberFrame() {
+      MembershipManagement membership;
+    public RemoveMemberFrame(MembershipManagement membership,Boolean dog) {
+      this.membership=membership;
         initComponents();
     }
+    public RemoveMemberFrame(MembershipManagement membership)
+    {
+     java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RemoveMemberFrame(membership,true).setVisible(true);
+            }
+        });
+      
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,6 +42,9 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
         nameLbl = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
         removeBtn = new javax.swing.JButton();
+        removeBtn.addActionListener(new RemoveBtnAction());
+        cancelBtn = new javax.swing.JButton();
+        cancelBtn.addActionListener(new CancelBtnAction());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,21 +52,25 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
 
         removeBtn.setText("Remove");
 
+        cancelBtn.setText("Cancel");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(nameLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55))))
+                        .addGap(55, 55, 55))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,7 +80,9 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
                     .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
         );
 
@@ -96,14 +117,33 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RemoveMemberFrame().setVisible(true);
-            }
-        });
+        
     }
-
+ private class RemoveBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press Session Attendance
+          if(membership.removeUserCompletely(nameTxt.getText()))
+          {
+           //FeedBackFrame feedBackFrame = new FeedBackFrame("Member has been removed");
+          }
+          else
+          {
+           //FeedBackFrame feedBackFrame = new FeedBackFrame("Member has unpaid Debts or member is not in the System");
+          }
+           
+          
+    }
+ }
+  private class CancelBtnAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press Session Attendance
+        TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
+                  dispose();
+          
+    }
+ }
     // Variables declaration - do not modify                     
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JButton removeBtn;
