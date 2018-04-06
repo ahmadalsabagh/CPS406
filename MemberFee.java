@@ -13,17 +13,17 @@ public class MemberFee{
   }
   
   public void incrementFee(double n){
-    this.fee =+ n;
+    this.fee += n;
   }
   
   public void decrementFee(double n){
-    this.fee =- n;
+    this.fee -= n;
   }
   
   public void applyConsecDiscount(double n){
     if (!consecApplied){
       double price = n/100;
-      this.fee =- (price * this.fee);
+      this.fee -= (price * this.fee);
       consecApplied = true;
     }
   }
@@ -31,7 +31,7 @@ public class MemberFee{
   public void applyAttendDiscount(double n){
     if (!attendDiscount){
       double price = n/100;
-      this.fee =- (price * this.fee);
+      this.fee -= (price * this.fee);
       attendDiscount = true;
     }
   }
