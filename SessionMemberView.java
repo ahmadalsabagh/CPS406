@@ -30,7 +30,7 @@ public class SessionMemberView extends javax.swing.JFrame {
     }
     
     //treasurer's view
-    public SessionMemberView(List<String> names, String who){
+    public SessionMemberView(ArrayList<String> names, String who){
       initComponents();
       if (who.equals("coach")){
         for (int x = 0; x < names.size(); x++){
@@ -38,7 +38,7 @@ public class SessionMemberView extends javax.swing.JFrame {
         } 
       }
       if (who.equals("member")){
-        List<String> temp = new List<String>();
+          java.util.List<String> temp = new ArrayList<String>();
         for (int x = 0; x < names.size(); x++){
           if (!memberList.getItem(x).contains(names.get(x))){
             memberList.addItem(names.get(x));
@@ -140,5 +140,3 @@ public class SessionMemberView extends javax.swing.JFrame {
     }
  }
 }
-
-
