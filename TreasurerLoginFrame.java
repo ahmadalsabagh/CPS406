@@ -5,13 +5,15 @@
  * and open the template in the editor.
  k*/
 import java.awt.*;  
-import java.awt.event.*; 
+import java.awt.event.*;
+import java.util.*;
 
 /**
  *
  * @author elton
  */
 public class TreasurerLoginFrame extends javax.swing.JFrame {
+  boolean whichList;
 
     /**
      * Creates new form TreasurerFrame
@@ -51,6 +53,8 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         msgBtn = new javax.swing.JButton();
         welcomeLbl = new javax.swing.JLabel();
+        coachesBtn.addActionListener(new coachesBtnAction());
+        membersBtn.addActionListener(new memberBtnAction());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,7 +163,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
       private class coachesBtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           //What happens when u press coach list
-          SessionMemberView sessionViewer = new SessionMemberView(membership.coaches);
+          SessionMemberView sessionViewer = new SessionMemberView(membership.coaches, "coach");
           dispose();
           
         }
@@ -171,9 +175,9 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
           //What happens when u press Members list
           ArrayList<String[]> names = new ArrayList<String[]>();
           for (int x = 0; x < membership.sessions.size(); x++){
-           names.add(membership.sessions.get(x).getMemberNames());
+           //names.add(membership.sessions.get(x).getMemberNames());////////////////// fix plz
           }
-          SessionMemberView sessionViewer = new SessionMemberView(names);
+          SessionMemberView sessionViewer = new SessionMemberView(names, "member");
           dispose();
           
         }

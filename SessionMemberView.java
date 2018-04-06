@@ -1,5 +1,6 @@
 import java.awt.*;  
 import java.awt.event.*;  
+import java.util.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,25 +30,23 @@ public class SessionMemberView extends javax.swing.JFrame {
     }
     
     //treasurer's view
-    public SessionMemberView(ArrayList<String> coachNames){
+    public SessionMemberView(List<String> names, String who){
       initComponents();
-      for (int x = 0; x < coachNames.size(); x++){
-        memberList.addItem(coachName.get(x));
-      } 
-    }
-    
-    //treasurer's view
-    //no duplicates
-    //membernames is every member in every session
-    public SessionMemberView(ArrayList<String> memberNames){
-      initComponents();
-      ArrayList<String> temp = new ArrayList<String>();
-      for (int x = 0; x < memberNames.size(); x++){
-        if (!memberNames.get(x)){
-          memberList.addItem(memberNames.get(x));
+      if (who.equals("coach")){
+        for (int x = 0; x < names.size(); x++){
+          memberList.addItem(names.get(x));
+        } 
+      }
+      else {
+        List<String> temp = new List<String>();
+        for (int x = 0; x < names.size(); x++){
+          if (!memberList.getItem(x).contains(names.get(x))){
+            memberList.addItem(names.get(x));
+          }
         }
       }
     }
+    
 
 
     /**
