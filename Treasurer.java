@@ -38,7 +38,7 @@ public class Treasurer {
    int paid = 0;
    for (int i = 0; i < temp.length; i++)
          {
-             if (temp[i][2] == "true")
+             if (temp[i][1] == "true")
              {
               paid++;
              }

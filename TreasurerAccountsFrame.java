@@ -5,7 +5,8 @@
  */
 import java.awt.*;  
 import java.awt.event.*; 
-
+import javax.swing.*;
+import javax.swing.event.*;
 /**
  *
  * @author elton
@@ -16,8 +17,10 @@ public class TreasurerAccountsFrame extends javax.swing.JFrame {
      * Creates new form TreasurerAccountsFrame
      */
   private MembershipManagement membership;
+  private Treasurer treasurer;
     public TreasurerAccountsFrame(MembershipManagement membership,boolean dog) {
         this.membership = membership;
+        this.treasurer = new Treasurer(1500);
         initComponents();
     }
     
@@ -41,18 +44,22 @@ public class TreasurerAccountsFrame extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         sessionList = new javax.swing.JList<>();
+        sessionList.addListSelectionListener(new DropSelect());
         jScrollPane2 = new javax.swing.JScrollPane();
         invoiceTxt = new javax.swing.JTextArea();
         invoiceLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         backBtn.addActionListener(new BackAction());
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         sessionList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            
+            String[] strings = { "Session 0", "Session 1", "Session 2", "Session 3", "Session 4", "Session 5", "Session 6", "Session 7", "Session 8", "Session 9", "Session 10", "Session 11"};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+            
         });
         jScrollPane1.setViewportView(sessionList);
 
@@ -64,6 +71,7 @@ public class TreasurerAccountsFrame extends javax.swing.JFrame {
         invoiceLbl.setText("INVOICE");
 
         backBtn.setText("Back");
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,8 +146,23 @@ public class TreasurerAccountsFrame extends javax.swing.JFrame {
       public void actionPerformed(ActionEvent e) {
         TreasurerFrame treasurerFrame = new TreasurerFrame(membership);
         dispose();
+        }
+     }
+     //Action listener for the sessionlist selection
+      private class DropSelect implements ListSelectionListener{
+          public void valueChanged(ListSelectionEvent e){
+              String value = sessionList.getSelectedValue();
+              String[] sessionNumber = value.split(" ");
+              
+              Session session = membership.getSession(Integer.parseInt(sessionNumber[1]));
+          
+              
+              String invoice = treasurer.profitInvoice(session);
+              invoiceTxt.setText(invoice);
+          }
       }
-    }
+      
+    
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton backBtn;
