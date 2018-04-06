@@ -42,6 +42,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         addBtn.addActionListener(new addBtnAction());
         removeBtn = new javax.swing.JButton();
+        removeBtn.addActionListener(new RemoveBtnAction());
         accountsBtn = new javax.swing.JButton();
         accountsBtn.addActionListener(new AccountsAction());
         coachesBtn = new javax.swing.JButton();
@@ -152,16 +153,17 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
           
         }
           
-    }
-       private class RemoveBtnAction implements ActionListener {
+    } 
+      private class RemoveBtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press add Members
-          RemoveMemberFrame addMemberFrame = new RemoveMemberFrame(membership);
+          RemoveMemberFrame removeMemberFrame = new RemoveMemberFrame(membership);
           dispose();
           
         }
           
     }
+       
          private class AccountsAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press add Members

@@ -194,14 +194,17 @@ public class Login extends javax.swing.JFrame {
                   messages = membershipManagement.messageSystem.showMessages(userTxt.getText());
                   if (messages.isEmpty()){
                     FeedBackFrame frame = new FeedBackFrame("You have 0 unread messages in your inbox");
+                    frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                   }
                   else{
                     FeedBackFrame frame = new FeedBackFrame("You have " + messages.size() + " unread messages in your inbox");
+                    frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                   }
                   for (int x = 0; x < messages.size(); x++){
                     FeedBackFrame temp = new FeedBackFrame(messages.get(x));
+                    temp.setLocationRelativeTo(null);
                     temp.setVisible(true);
                   }
                   
@@ -219,14 +222,17 @@ public class Login extends javax.swing.JFrame {
                   if (messages.isEmpty()){
                     FeedBackFrame frame = new FeedBackFrame("You have 0 unread messages in your inbox");
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
                   }
                   else{
                     FeedBackFrame frame = new FeedBackFrame("You have " + messages.size() + " unread messages in your inbox");
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
                   }
                   for (int x = 0; x < messages.size(); x++){
                     FeedBackFrame temp = new FeedBackFrame(messages.get(x));
                     temp.setVisible(true);
+                    temp.setLocationRelativeTo(null);
                   }
                   
               }
@@ -244,14 +250,17 @@ public class Login extends javax.swing.JFrame {
                   messages = membershipManagement.messageSystem.showMessages(userTxt.getText());
                   if (messages.isEmpty()){
                     FeedBackFrame frame = new FeedBackFrame("You have 0 unread messages in your inbox");
+                    frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                   }
                   else{
                     FeedBackFrame frame = new FeedBackFrame("You have " + messages.size() + " unread messages in your inbox");
+                    frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                   }
                   for (int x = 0; x < messages.size(); x++){
                     FeedBackFrame temp = new FeedBackFrame(messages.get(x));
+                    temp.setLocationRelativeTo(null);
                     temp.setVisible(true);
                   }
               }

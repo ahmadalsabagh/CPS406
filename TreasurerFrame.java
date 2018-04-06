@@ -38,7 +38,7 @@ public class TreasurerFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        logoutBtn.setText("Logout");
+        logoutBtn.setText("Back");
 
         invoiceBtn.setText("Session Invoice");
         invoiceBtn.addActionListener(new launchInvoice());
@@ -127,7 +127,8 @@ public class TreasurerFrame extends javax.swing.JFrame {
     private class launchInvoice implements ActionListener {
         public void actionPerformed(ActionEvent e) {
        
-          System.out.println("Invoice");
+          TreasurerAccountsFrame treasurerAccountsFrame = new TreasurerAccountsFrame(membership);
+          dispose();
           
     }
     

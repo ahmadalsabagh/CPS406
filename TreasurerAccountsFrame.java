@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.awt.*;  
+import java.awt.event.*; 
 
 /**
  *
@@ -14,8 +15,19 @@ public class TreasurerAccountsFrame extends javax.swing.JFrame {
     /**
      * Creates new form TreasurerAccountsFrame
      */
-    public TreasurerAccountsFrame() {
+  private MembershipManagement membership;
+    public TreasurerAccountsFrame(MembershipManagement membership,boolean dog) {
+        this.membership = membership;
         initComponents();
+    }
+    
+    public TreasurerAccountsFrame(MembershipManagement membership)
+      {
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TreasurerAccountsFrame(membership,true).setVisible(true);
+            }
+        });
     }
 
     /**
@@ -33,6 +45,7 @@ public class TreasurerAccountsFrame extends javax.swing.JFrame {
         invoiceTxt = new javax.swing.JTextArea();
         invoiceLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        backBtn.addActionListener(new BackAction());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,11 +132,13 @@ public class TreasurerAccountsFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TreasurerAccountsFrame().setVisible(true);
-            }
-        });
+        
+    }
+     private class BackAction implements ActionListener {
+      public void actionPerformed(ActionEvent e) {
+        TreasurerFrame treasurerFrame = new TreasurerFrame(membership);
+        dispose();
+      }
     }
 
     // Variables declaration - do not modify                     

@@ -124,13 +124,19 @@ public class RemoveMemberFrame extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
       if(membership.removeUserCompletely(nameTxt.getText()))
       {  
-        
+        FeedBackFrame feedBackFrame = new FeedBackFrame("User has been Removed");
+          feedBackFrame.setLocationRelativeTo(null);
+          feedBackFrame.setVisible(true);
+
       } 
       else 
       {
-        
-        
+        FeedBackFrame feedBackFrame = new FeedBackFrame("User has unpaid Debts or is not a member");
+        feedBackFrame.setLocationRelativeTo(null);
+        feedBackFrame.setVisible(true);
       }  
+      TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
+      dispose();
     }
  }
         private class CancelAction implements ActionListener {
