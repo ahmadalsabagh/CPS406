@@ -8,10 +8,17 @@ public class TreasurerFrame extends javax.swing.JFrame {
      * Creates new form POSFramek
      */
     public MembershipManagement membership;
-    public TreasurerFrame(MembershipManagement membership) {
+    public TreasurerFrame(MembershipManagement membership,Boolean dog) {
         this.membership = membership;
         initComponents();
     }
+      public TreasurerFrame(MembershipManagement membership) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TreasurerFrame(membership,true).setVisible(true);
+            }
+        });
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -23,6 +30,7 @@ public class TreasurerFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         logoutBtn = new javax.swing.JButton();
+      logoutBtn.addActionListener(new LogoutAction());
         invoiceBtn = new javax.swing.JButton();
         memStatBtn = new javax.swing.JButton();
         debtStatBtn = new javax.swing.JButton();
@@ -113,17 +121,22 @@ public class TreasurerFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TreasurerFrame(membership).setVisible(true);
-            }
-        });
+        
     }
     
     private class launchInvoice implements ActionListener {
         public void actionPerformed(ActionEvent e) {
        
           System.out.println("Invoice");
+          
+    }
+    
+}
+      private class LogoutAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+       TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
+                  dispose();
+        
           
     }
     
