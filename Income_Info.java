@@ -1,5 +1,5 @@
 import java.util.*;
-//Need to calculate amount of money coming in from members
+//Need to calculate amount of money coming in from membersk
 //Need to calculate the amount of money owed to coaches/hall expenses
 public class Income_Info {
     

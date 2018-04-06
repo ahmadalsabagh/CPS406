@@ -39,7 +39,7 @@ public class posEvent {
 	 this.usrName = usrName;
   double bill = 0.0;
 
- // String[][] temp = this.session.getMemberReportInfo();
+ // String[][] temp = this.session.getMemberReportInfo();k
   
         if (type == 2) {
          bill = membership.getUserFees(usrName).makePayment() + 100; //base class fee is $100

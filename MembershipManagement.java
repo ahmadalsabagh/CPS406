@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
-
+//k
 public class MembershipManagement{
 
     public List<Session> sessions;
@@ -10,7 +10,7 @@ public class MembershipManagement{
     public MessageSystem messageSystem;
     public int currCoach;
 
-    //Initialize  the HashMap from the memberPayments method
+    //Initialize  the HashMap from the memberPayments methodk
     public HashMap<String,int[]> memberPaid;
 
     public MembershipManagement()

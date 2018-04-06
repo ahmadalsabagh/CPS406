@@ -1,3 +1,4 @@
+//k
 public class MemberFee{
   
   private double fee;

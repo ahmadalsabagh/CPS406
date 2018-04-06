@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Rony Verch on 2018-03-13.
- */
+ k*/
 public class Session
 {
   

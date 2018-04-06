@@ -1,6 +1,6 @@
 /**
  * Created by Zamakhshari Abd Al-Ahad on 2018-03-15.
- */
+ k*/
 public class Treasurer {
  
  public MessageSystem notifications;

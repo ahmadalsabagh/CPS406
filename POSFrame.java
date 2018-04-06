@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//import Login.LoginAction;
+//import Login.LoginAction;k
 
 public class POSFrame extends javax.swing.JFrame {
 

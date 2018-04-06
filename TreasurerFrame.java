@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 public class TreasurerFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form POSFrame
+     * Creates new form POSFramek
      */
     public MembershipManagement membership;
     public TreasurerFrame(MembershipManagement membership,Boolean dog) {
