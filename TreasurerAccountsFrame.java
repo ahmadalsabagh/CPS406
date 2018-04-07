@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*; 
 import javax.swing.*;
 import javax.swing.event.*;
+import java.util.*;
 /**
  *
  * @author elton
@@ -153,11 +154,12 @@ public class TreasurerAccountsFrame extends javax.swing.JFrame {
           public void valueChanged(ListSelectionEvent e){
               String value = sessionList.getSelectedValue();
               String[] sessionNumber = value.split(" ");
-              
-              Session session = membership.getSession(Integer.parseInt(sessionNumber[1]));
+              int num = Integer.parseInt(sessionNumber[1]);
+              Session session = membership.getSession(num);
           
+              String invoice = treasurer.profitInvoice(session,num);
+             // System.out.println(session.getMemberNames());
               
-              String invoice = treasurer.profitInvoice(session);
               invoiceTxt.setText(invoice);
           }
       }
