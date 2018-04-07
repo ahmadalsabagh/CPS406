@@ -179,23 +179,19 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
       private class memberBtnAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           //What happens when u press Members list
-          System.out.println("Test 1 ");
           ArrayList<String> names = new ArrayList<String>();
             for (int i = 0; i < membership.sessions.size(); i++)
             {
-              System.out.println("Test 2 ");
                 String[][] temp = membership.sessions.get(i).getMemberNames();
                 
                 for (int j = 0; j < temp.length; j++)
                 {
-                  System.out.println("Test 3 ");
                     if (!names.contains(temp[j][0]))
                     {
                         names.add(temp[j][0]);
                     }
                 }
             }
-          System.out.println("Test 4 ");
           SessionMemberView sessionViewer = new SessionMemberView(names, "member");
           sessionViewer.setVisible(true);
           dispose();
