@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 import java.awt.*;  
-import java.awt.event.*;  
+import java.awt.event.*;
+import java.util.*;
 
 /**
  *
@@ -17,18 +18,21 @@ public class CardInfoFrame extends javax.swing.JFrame {
      */
   private MembershipManagement membership;
   private String memberName;
-  public CardInfoFrame(MembershipManagement membership,String memberName,Boolean dog) {
+  private ArrayList<MemberFee> membershipFees;
+  public CardInfoFrame(MembershipManagement membership,ArrayList<MemberFee> membershipFees, String memberName,Boolean dog) {
     this.membership = membership;
     this.memberName = memberName;
+    System.out.println(membershipFees.get(0).getName());
     initComponents();
        
        
     }
-    public CardInfoFrame(MembershipManagement membership,String memberName) {
-        initComponents();
+    public CardInfoFrame(MembershipManagement membership,ArrayList<MemberFee> membershipFees,String memberName) {
+        this.membershipFees = membershipFees;
+      initComponents();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CardInfoFrame(membership,memberName,true).setVisible(true);
+                new CardInfoFrame(membership,membershipFees,memberName,true).setVisible(true);
             }
         });
     }
@@ -51,6 +55,7 @@ public class CardInfoFrame extends javax.swing.JFrame {
         cvvTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         payBtn = new javax.swing.JButton();
+        payBtn.addActionListener(new payAction());
         jLabel5 = new javax.swing.JLabel();
         idTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -61,7 +66,8 @@ public class CardInfoFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         balanceLbl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        balanceLbl.setText("Balance: ");
+        balanceLbl.setText("Balance: " + this.membership.fees.get(0).getName());
+        // membership.getUserFees(memberName)
 
         jLabel2.setText("/");
 
@@ -164,9 +170,6 @@ public class CardInfoFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    /**
-     * @param args the command line arguments
-     */
    private class LogoutAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
          membership.saveSessionData(membership.sessions);
@@ -186,6 +189,33 @@ public class CardInfoFrame extends javax.swing.JFrame {
                           MemberFrame memberFrame = new MemberFrame(membership,memberName);
         dispose();
          
+        }
+    }
+    private class payAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+
+            double bill = membership.getUserFees(memberName).makePayment();
+
+
+            System.out.println("Your total is: $" + bill);
+
+            for (int i = 0; i < membership.sessions.size(); i ++)
+            {
+                String[][] temp = membership.sessions.get(i).getMemberNames();
+
+                for (int j = 0; j < temp.length; j++)
+                {
+                    if (temp[j][0].equals(memberName))
+                    {
+                        System.out.println(j);
+                        membership.sessions.get(i).setIsPaid(j, "true");
+                    }
+                }
+            }
+
+            MemberFrame memberFrame = new MemberFrame(membership,memberName);
+            dispose();
+
         }
     }
 
