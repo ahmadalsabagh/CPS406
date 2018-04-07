@@ -3,9 +3,9 @@ public class MemberFee{
   
   private double fee;
   private String name;
-  private boolean isPenalty = false;
-  private boolean consecApplied = false;
-  private boolean attendDiscount = false;
+  public boolean isPenalty = false;
+  public boolean consecApplied = false;
+  public boolean attendDiscount = false;
   
   public MemberFee(double fee, String name){
     this.fee = fee;
