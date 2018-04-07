@@ -32,20 +32,31 @@ public class SessionMemberView extends javax.swing.JFrame {
     //treasurer's view
     public SessionMemberView(ArrayList<String> names, String who){
       initComponents();
+      boolean found=false;
       if (who.equals("coach")){
         for (int x = 0; x < names.size(); x++){
           memberList.addItem(names.get(x));
         } 
       }
       if (who.equals("member")){
+        System.out.println("Hello");
           java.util.List<String> temp = new ArrayList<String>();
         for (int x = 0; x < names.size(); x++){
-          if (!memberList.getItem(x).contains(names.get(x))){
-            memberList.addItem(names.get(x));
-          }
+          System.out.println(names.get(x));
+          if(!temp.contains(names.get(x))){
+            System.out.println("Hello");
+         temp.add(names.get(x));
+                    }
+          else
+            System.out.println("not Hello");
+             }
+        for(int y = 0; y < temp.size(); y++){
+        
+         memberList.addItem(temp.get(x));
         }
-      }
+        }
     }
+  
     
 
 
