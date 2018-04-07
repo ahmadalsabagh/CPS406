@@ -15,19 +15,19 @@ public class MessageFrame extends javax.swing.JFrame {
     /**
      * Creates new form MessageFrame
      */
-  MembershipManagement membership;
-  Coach coach;
-  Boolean who;
+  private MembershipManagement membership;
+  private Coach coach;
+  private int who;
     public MessageFrame(MembershipManagement membership,Coach coach,Boolean dog) {
       this.membership = membership;
       this.coach = coach;
-      who = true;
+      this.who=1;
         initComponents();
     }
-    public MessageFrame(MembershipManagement membership,Boolean dog)
+    public MessageFrame(MembershipManagement membership,int who,Boolean dog)
     {
       this.membership = membership;
-      this.who = false;
+      this.who = who ;
       initComponents();
     }  
     public MessageFrame(MembershipManagement membership,Coach coach)
@@ -40,11 +40,11 @@ public class MessageFrame extends javax.swing.JFrame {
         });
       
     }
-    public MessageFrame(MembershipManagement membership)
+    public MessageFrame(MembershipManagement membership,int who)
     {
       java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MessageFrame(membership,true).setVisible(true);
+                new MessageFrame(membership,who,true).setVisible(true);
             }
         });
     }  
@@ -150,24 +150,34 @@ public class MessageFrame extends javax.swing.JFrame {
         String message = msgTxt.getText();
         
      
-        if (who){
+        if (who==1){
           String[][] memberNames = coach.getSession().getMemberNames();
           
           for (int x = 0; x < memberNames.length; x++){
             membership.messageSystem.createMessage(memberNames[x][0],message);
           }
         }
-        else {
+        else if(who==2){
           
           membership.messageSystem.createMessage("bossman444",message);  
         }
-        System.out.println("Message was Sent");
+        
+      
+      else if(who==0);
+      {
+        for(int i =0;i < 12;i++)
+        {
+          membership.messageSystem.createMessage(membership.coaches.get(i).getName(),message); 
+          
+        }  
+        
+      }  
+      System.out.println("Message was Sent");
         CoachFrame coachFrame = new CoachFrame(membership,membership.coaches.get(membership.currCoach));
         dispose();
-      }
-      
     }
-    
+      
+    }  
     private class CloseFrame implements ActionListener {
       public void actionPerformed(ActionEvent e) {
          CoachFrame coachFrame = new CoachFrame(membership,membership.coaches.get(membership.currCoach));

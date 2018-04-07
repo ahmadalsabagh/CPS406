@@ -265,7 +265,7 @@ public class CoachFrame extends javax.swing.JFrame  {
   private class MsgTreasurerAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press Message Treasurere
-          MessageFrame messageFrame = new MessageFrame(membership);
+          MessageFrame messageFrame = new MessageFrame(membership,2);
           dispose();
     }
  }

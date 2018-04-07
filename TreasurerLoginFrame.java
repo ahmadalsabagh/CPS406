@@ -52,6 +52,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
         membersBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         msgBtn = new javax.swing.JButton();
+        msgBtn.addActionListener(new MsgAction());
         welcomeLbl = new javax.swing.JLabel();
         coachesBtn.addActionListener(new coachesBtnAction());
         membersBtn.addActionListener(new memberBtnAction());
@@ -170,7 +171,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
             }
           SessionMemberView sessionViewer = new SessionMemberView(names, "coach");
           sessionViewer.setVisible(true);
-          dispose();
+          
           
         }
         
@@ -194,7 +195,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
             }
           SessionMemberView sessionViewer = new SessionMemberView(names, "member");
           sessionViewer.setVisible(true);
-          dispose();
+          
           
         }
         
@@ -203,6 +204,15 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press add Members
           RemoveMemberFrame removeMemberFrame = new RemoveMemberFrame(membership);
+          dispose();
+          
+        }
+          
+    }
+       private class MsgAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+      //What happens when u press MsgMembers
+          MessageFrame messageFrame = new MessageFrame(membership,0);
           dispose();
           
         }

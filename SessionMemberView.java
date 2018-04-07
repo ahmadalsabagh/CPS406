@@ -143,6 +143,7 @@ public class SessionMemberView extends javax.swing.JFrame {
     
           private class CloseFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+          
           dispose();
     }
  }
