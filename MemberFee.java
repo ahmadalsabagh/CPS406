@@ -39,8 +39,7 @@ public class MemberFee{
   
   public void applyPenalty(double n){
     if (!isPenalty){
-      double price = n/100;
-      this.fee += (price * this.fee);
+      incrementFee(n);
       isPenalty = true;
     }
   }
