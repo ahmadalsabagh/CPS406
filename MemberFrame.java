@@ -46,7 +46,6 @@ public class MemberFrame extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         logoutBtn.addActionListener(new LogoutAction());
         viewScheduleBtn = new javax.swing.JButton();
-        viewScheduleBtn.addActionListener(new ScheduleAction());
         FeeBtn = new javax.swing.JButton();
         MsgCoachBtn = new javax.swing.JButton();
         MsgCoachBtn.addActionListener(new MsgCoachAction());
@@ -141,8 +140,8 @@ public class MemberFrame extends javax.swing.JFrame {
     
     private class payFees implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-         
-          CardInfoFrame cardInfoFrame = new CardInfoFrame(membership, memberName);
+            System.out.println(membership.fees.get(0).getName());
+          CardInfoFrame cardInfoFrame = new CardInfoFrame(membership, membership.fees, memberName);
           dispose();
          
         }
@@ -165,114 +164,6 @@ public class MemberFrame extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
         MessageFrame messageFrame = new MessageFrame(membership,memberName);
         dispose();
-        }
-    }
-       private class ScheduleAction implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-          String[][] memberNames;
-       for(int i = 0;i<membership.sessions.size();i++)
-       {
-         memberNames = membership.sessions.get(i).getMemberNames();
-         for(int j = 0;j<memberNames.length;j++)
-         {
-          if(memberNames[j][0].equals(memberName))
-               {
-                
-          FeedBackFrame feedBackFrame;
-      
-         if(i==0)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Fridays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-          if(i==1)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Sundays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-           if(i==2)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Friday,Sessions on Thursdays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-            if(i==3)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Fridays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-             if(i==4)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Monday,Sessions on Tuesday");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-              if(i==5)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Wednesday,Sessions on Thursday");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-               if(i==6)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Sundays,Sessions on Saturdays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-                if(i==7)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Tuesdays,Sessions on Mondays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-                 if(i==8)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Saturdays,Sessions on Wednesdays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-                  if(i==9)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Wednedays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-                   if(i==10)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Mondays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-                    if(i==11)
-         {
-         feedBackFrame = new FeedBackFrame("Practices on Tuesdays,Sessions on Fridays");
-         feedBackFrame.setVisible(true);
-         feedBackFrame.setLocationRelativeTo(null);
-         
-         }
-          
-    
-               }
-           
-         }  
-       }  
-        
-      
-        
         }
     }
   
