@@ -169,6 +169,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
                 names.add(membership.coaches.get(i).getName());
             }
           SessionMemberView sessionViewer = new SessionMemberView(names, "coach");
+          sessionViewer.setVisible(true);
           dispose();
           
         }
@@ -192,6 +193,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
                 }
             }
           SessionMemberView sessionViewer = new SessionMemberView(names, "member");
+          sessionViewer.setVisible(true);
           dispose();
           
         }
