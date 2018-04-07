@@ -189,7 +189,7 @@ public class CoachFrame extends javax.swing.JFrame  {
   private class PracticeFreqAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press Practice Attendance
-       //  FrequencyFrame frequencyFrame = new FrequencyFrame(membership,coach,1);
+         FrequencyFrame frequencyFrame = new FrequencyFrame(membership,coach,1);
          dispose();
           
     }
@@ -198,6 +198,8 @@ public class CoachFrame extends javax.swing.JFrame  {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press Session Attendance
           System.out.println("Session Attendance Button Pressed");
+          FrequencyFrame frequencyFrame = new FrequencyFrame(membership,coach,0);
+          dispose();
           
     }
  }

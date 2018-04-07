@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.awt.*;  
+import java.awt.event.*; 
 
 /**
  *
@@ -14,9 +15,23 @@ public class FrequencyFrame extends javax.swing.JFrame {
     /**
      * Creates new form FrequencyFrame
      */
-    public FrequencyFrame() {
+  private MembershipManagement membership;
+  private Coach coach;
+  private int who;
+    public FrequencyFrame(MembershipManagement membership,Coach coach,int who,boolean dog) {
+        this.membership = membership;
+        this.coach = coach;
+        this.who = who;
         initComponents();
     }
+    public FrequencyFrame(MembershipManagement membership,Coach coach,int who)
+    {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrequencyFrame(membership,coach,who,true).setVisible(true);
+            }
+        });
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +46,9 @@ public class FrequencyFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         numbersTxt = new javax.swing.JTextField();
         okBtn = new javax.swing.JButton();
+        okBtn.addActionListener(new OkAction());
         cancelBtn = new javax.swing.JButton();
+        cancelBtn.addActionListener(new CancelAction());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,11 +141,40 @@ public class FrequencyFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrequencyFrame().setVisible(true);
-            }
-        });
+        
+    }
+         private class OkAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+          int currCoach=0;
+          for(int i = 0; i<membership.coaches.size();i++)
+          {
+           if(membership.coaches.get(i).getName().equals(coach.getName()))
+           {
+            currCoach = i;
+           } 
+          }  
+          String[] split = numbersTxt.getText().split(",");
+          int[] array = new int[split.length];
+          for(int x = 0;x<array.length;x++)
+          {
+           array[x]=Integer.parseInt(split[x]);
+          }
+          if(who==1){
+          membership.coaches.get(currCoach).attendPractice(array);
+          }
+          if(who==0)
+          {
+           membership.coaches.get(currCoach).attendSession(array);
+          }  
+          CoachFrame coachFrame = new CoachFrame(membership,coach);
+          dispose();
+    }
+         }
+             private class CancelAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+           CoachFrame coachFrame = new CoachFrame(membership,coach);
+          dispose();
+        }
     }
 
     // Variables declaration - do not modify                     

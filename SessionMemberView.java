@@ -44,7 +44,7 @@ public class SessionMemberView extends javax.swing.JFrame {
           if(!temp.contains(names.get(x))){
             temp.add(names.get(x));
           }
-          else
+         
         }
         for(int y = 0; y < temp.size(); y++){
           
