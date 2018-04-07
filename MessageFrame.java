@@ -18,10 +18,17 @@ public class MessageFrame extends javax.swing.JFrame {
   private MembershipManagement membership;
   private Coach coach;
   private int who;
+  private String name;
     public MessageFrame(MembershipManagement membership,Coach coach,Boolean dog) {
       this.membership = membership;
       this.coach = coach;
       this.who=1;
+        initComponents();
+    }
+    public MessageFrame(MembershipManagement membership,String name,Boolean dog) {
+      this.membership = membership;
+      this.name = name;
+      this.who=3;
         initComponents();
     }
     public MessageFrame(MembershipManagement membership,int who,Boolean dog)
@@ -36,6 +43,16 @@ public class MessageFrame extends javax.swing.JFrame {
     java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MessageFrame(membership,coach,true).setVisible(true);
+            }
+        });
+      
+    }
+    public MessageFrame(MembershipManagement membership,String name)
+    {
+      
+    java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MessageFrame(membership,name,true).setVisible(true);
             }
         });
       
@@ -163,7 +180,7 @@ public class MessageFrame extends javax.swing.JFrame {
         }
         
       
-      else if(who==0);
+      else if(who==0)
       {
         for(int i =0;i < 12;i++)
         {
@@ -171,17 +188,58 @@ public class MessageFrame extends javax.swing.JFrame {
           
         }  
         
-      }  
+      }
+      else if(who==3)
+      {
+        String[][] memberNames;
+       for(int i = 0;i<membership.sessions.size();i++)
+       {
+         memberNames = membership.sessions.get(i).getMemberNames();
+         for(int j = 0;j<memberNames.length;j++)
+         {
+          if(memberNames[j][0].equals(name))
+               {
+                 membership.messageSystem.createMessage(membership.coaches.get(j).getName(),message);
+               }
+           
+         }  
+       }  
+        
+      }
       System.out.println("Message was Sent");
+      if(who==1 || who==2)
+      {
         CoachFrame coachFrame = new CoachFrame(membership,membership.coaches.get(membership.currCoach));
         dispose();
-    }
+      }
+      if (who==0)
+      {
+      TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
+      }  
+        if(who==3)
+        {
+          MemberFrame memberFrame = new MemberFrame(membership,name);
+          dispose();
+        }  
+      }
       
     }  
     private class CloseFrame implements ActionListener {
       public void actionPerformed(ActionEvent e) {
-         CoachFrame coachFrame = new CoachFrame(membership,membership.coaches.get(membership.currCoach));
+         if(who==1 || who==2)
+      {
+        CoachFrame coachFrame = new CoachFrame(membership,membership.coaches.get(membership.currCoach));
         dispose();
+      }
+      if (who==0)
+      {
+      TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
+      }  
+        if(who==3)
+        {
+          MemberFrame memberFrame = new MemberFrame(membership,name);
+          dispose();
+        }  
       }
     }
 

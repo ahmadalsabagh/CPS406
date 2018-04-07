@@ -44,9 +44,11 @@ public class MemberFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         logoutBtn = new javax.swing.JButton();
+        logoutBtn.addActionListener(new LogoutAction());
         viewScheduleBtn = new javax.swing.JButton();
         FeeBtn = new javax.swing.JButton();
         MsgCoachBtn = new javax.swing.JButton();
+        MsgCoachBtn.addActionListener(new MsgCoachAction());
         welcomeLbl = new javax.swing.JLabel();
         userLbl = new javax.swing.JLabel();
 
@@ -143,6 +145,26 @@ public class MemberFrame extends javax.swing.JFrame {
           pos.setVisible(true);
          
           System.out.println("POS launched");
+        }
+    }
+    private class LogoutAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+         membership.saveSessionData(membership.sessions);
+          membership.saveCoachData(membership.coaches);
+          membership.saveMessageSystem();
+             java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+              new Login().setVisible(true);
+            }
+        });
+        dispose();
+         
+        }
+    }
+     private class MsgCoachAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+        MessageFrame messageFrame = new MessageFrame(membership,memberName);
+        dispose();
         }
     }
   

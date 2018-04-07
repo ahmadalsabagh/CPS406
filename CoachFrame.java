@@ -301,6 +301,7 @@ private class LogoutAction implements ActionListener {
           
           membership.saveSessionData(membership.sessions);
           membership.saveCoachData(membership.coaches);
+          membership.saveMessageSystem();
              java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
               new Login().setVisible(true);

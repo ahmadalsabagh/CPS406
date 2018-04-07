@@ -235,6 +235,7 @@ public class TreasurerLoginFrame extends javax.swing.JFrame {
            
           membership.saveSessionData(membership.sessions);
           membership.saveCoachData(membership.coaches);
+          membership.saveMessageSystem();
              java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
               new Login().setVisible(true);
