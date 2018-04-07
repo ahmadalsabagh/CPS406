@@ -173,15 +173,98 @@ public class CoachFrame extends javax.swing.JFrame  {
  }
   private class ScheduleAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+          FeedBackFrame feedBackFrame;
       //What happens when u press View Schedule
-          System.out.println("Schedule Button Pressed");
+         if(coach.getSessionID()==0)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Fridays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+          if(coach.getSessionID()==1)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Sundays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+           if(coach.getSessionID()==2)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Friday,Sessions on Thursdays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+            if(coach.getSessionID()==3)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Fridays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+             if(coach.getSessionID()==4)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Monday,Sessions on Tuesday");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+              if(coach.getSessionID()==5)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Wednesday,Sessions on Thursday");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+               if(coach.getSessionID()==6)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Sundays,Sessions on Saturdays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+                if(coach.getSessionID()==7)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Tuesdays,Sessions on Mondays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+                 if(coach.getSessionID()==8)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Saturdays,Sessions on Wednesdays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+                  if(coach.getSessionID()==9)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Wednedays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+                   if(coach.getSessionID()==10)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Thursdays,Sessions on Mondays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
+                    if(coach.getSessionID()==11)
+         {
+         feedBackFrame = new FeedBackFrame("Practices on Tuesdays,Sessions on Fridays");
+         feedBackFrame.setVisible(true);
+         feedBackFrame.setLocationRelativeTo(null);
+         
+         }
           
     }
  }
   private class MsgTreasurerAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press Message Treasurere
-          System.out.println("Message Treasurer Button Pressed");
           MessageFrame messageFrame = new MessageFrame(membership);
           dispose();
     }
@@ -197,7 +280,7 @@ public class CoachFrame extends javax.swing.JFrame  {
   private class SessionFreqAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press Session Attendance
-          System.out.println("Session Attendance Button Pressed");
+         
           FrequencyFrame frequencyFrame = new FrequencyFrame(membership,coach,0);
           dispose();
           
