@@ -50,20 +50,14 @@ public class Treasurer {
   }
 
   public int sessionSum(int month){
-    Session session = membership.getSession(month);
-    int sum = 0;
-    for (String[] members : session.getMembers()){
-      sum += 100;
-    }
-    return sum;
-    /*
     int sum = 0;
     Session session = membership.getSession(month);
     boolean notfound = false;
-    ArrayList<MemberFee> temp = membership.fees;
+    ArrayList<MemberFee> temp = new ArrayList<MemberFee>(membership.fees.size());
+    for (MemberFee item : membership.fees) temp.add(new MemberFee(item.getFee(), item.getName()));
     String[][] members = session.getMembers();
     for (String[] member : members){
-      for (MemberFee fee : membership.fees){
+      for (MemberFee fee : temp){
         if (member[0].equals(fee.getName())){
           fee.incrementFee(100);
           notfound = true;
@@ -71,18 +65,33 @@ public class Treasurer {
         }
       }
      if (!notfound){
-       membership.fees.add(new MemberFee(100,member[0]));
        temp.add(new MemberFee(100,member[0]));
+       membership.fees.add(new MemberFee(100,member[0]));
      }
     }
-   membership.fees = membership.missedPayments(membership.fees);
-   membership.fees = membership.applyDiscount(membership.fees);
-   membership.fees = membership.applyAttendDiscount(membership.fees);
-   for (int i = 0 ; i < membership.fees.size(); i++){
-     sum += membership.fees.get(i).getFee() - temp.get(i).getFee();
+
+    for (int i = 0; i < membership.fees.size(); i++)
+    {
+        temp.get(i).isPenalty = false;
+    }
+    for (int i = 0; i < membership.fees.size(); i++)
+    {
+        temp.get(i).isPenalty = false;
+    }
+    for (int i = 0; i < membership.fees.size(); i++)
+    {
+        temp.get(i).isPenalty = false;
+    }
+
+   temp = membership.missedPayments(temp);
+   temp = membership.applyDiscount(temp);
+   temp = membership.applyAttendDiscount(temp);
+
+   for (int i = 0 ; i < temp.size(); i++){
+     sum += temp.get(i).getFee() - membership.fees.get(i).getFee() + 100;
    }
+      System.out.println(sum);
     return sum;
-    */
   }
   
  //Returns a String value containing information pertaining to club revenue, expenses, and profit for the session.
