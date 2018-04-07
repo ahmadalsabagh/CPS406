@@ -141,10 +141,9 @@ public class MemberFrame extends javax.swing.JFrame {
     private class payFees implements ActionListener {
         public void actionPerformed(ActionEvent e) {
          
-          POSFrame pos = new POSFrame(membership, memberName);
-          pos.setVisible(true);
+          CardInfoFrame cardInfoFrame = new CardInfoFrame(membership, memberName);
+          dispose();
          
-          System.out.println("POS launched");
         }
     }
     private class LogoutAction implements ActionListener {

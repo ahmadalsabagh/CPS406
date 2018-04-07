@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.awt.*;  
+import java.awt.event.*;  
 
 /**
  *
@@ -14,11 +15,20 @@ public class CardInfoFrame extends javax.swing.JFrame {
     /**
      * Creates new form java
      */
-    public CardInfoFrame() {
+  private MembershipManagement membership;
+  private String memberName;
+  public CardInfoFrame(MembershipManagement membership,String memberName,Boolean dog) {
+    this.membership = membership;
+    this.memberName = memberName;
+    initComponents();
+       
+       
+    }
+    public CardInfoFrame(MembershipManagement membership,String memberName) {
         initComponents();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CardInfoFrame().setVisible(true);
+                new CardInfoFrame(membership,memberName,true).setVisible(true);
             }
         });
     }
@@ -45,8 +55,9 @@ public class CardInfoFrame extends javax.swing.JFrame {
         idTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        backBtn.addActionListener(new BackAction());
         logoutBtn = new javax.swing.JButton();
-
+        logoutBtn.addActionListener(new LogoutAction());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         balanceLbl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -156,7 +167,27 @@ public class CardInfoFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
+   private class LogoutAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+         membership.saveSessionData(membership.sessions);
+          membership.saveCoachData(membership.coaches);
+          membership.saveMessageSystem();
+             java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+              new Login().setVisible(true);
+            }
+        });
+        dispose();
+         
+        }
+    }
+   private class BackAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+                          MemberFrame memberFrame = new MemberFrame(membership,memberName);
+        dispose();
+         
+        }
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton backBtn;
