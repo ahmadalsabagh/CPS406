@@ -1,24 +1,26 @@
 /*
- /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- k*/
+ */
 
 
 /**
  *
  * @author elton
  */
-import java.awt.*;  
-import java.awt.event.*;  
 public class CardInfoFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form java
      */
-    public CardInfoFrame(MembershipManagement management, String memberName, posEvent pos) {
+    public CardInfoFrame() {
         initComponents();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CardInfoFrame().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -42,11 +44,13 @@ public class CardInfoFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         idTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         balanceLbl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        balanceLbl.setText("Balance: " + membership.getUserFees(memberName).getFee());
+        balanceLbl.setText("Balance: ");
 
         jLabel2.setText("/");
 
@@ -55,11 +59,14 @@ public class CardInfoFrame extends javax.swing.JFrame {
         jLabel4.setText("CVV");
 
         payBtn.setText("Pay");
-        payBtn.addActionListener(new finalizePayment());
 
         jLabel5.setText("Session ID");
 
         jLabel6.setText("Card Number");
+
+        backBtn.setText("Back");
+
+        logoutBtn.setText("Logout");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,15 +83,10 @@ public class CardInfoFrame extends javax.swing.JFrame {
                         .addComponent(expText2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(balanceLbl)))
+                        .addComponent(jLabel3)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cvvTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -105,15 +107,25 @@ public class CardInfoFrame extends javax.swing.JFrame {
                         .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(cardNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cardNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(balanceLbl)
+                        .addGap(169, 169, 169)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
-                .addComponent(balanceLbl)
-                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                    .addComponent(balanceLbl)
+                    .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cardNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,52 +156,10 @@ public class CardInfoFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CardInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CardInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CardInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CardInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CardInfoFrame(membership, memberName, pos).setVisible(true);
-            }
-        });
-    }
-    
-    private class finalizePayment implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-        	
-        	int sessionId = Integer.parseInt(idTxt.getText());
-        	
-        	pos.scheduleSession(sessionId, pos.type);
-        	
-        	//membership.saveSessionData(membership.sessions);
-          System.out.println("Payment finalized");
-          
-    }
-  }
+   
 
     // Variables declaration - do not modify                     
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel balanceLbl;
     private javax.swing.JTextField cardNumberTxt;
     private javax.swing.JTextField cvvTxt;
@@ -201,9 +171,7 @@ public class CardInfoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton payBtn;
-    private static MembershipManagement membership;
-    private static String memberName;
-    private static posEvent pos;
     // End of variables declaration                   
 }
