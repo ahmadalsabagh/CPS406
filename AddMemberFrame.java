@@ -183,7 +183,13 @@ public class AddMemberFrame extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
       //What happens when u press add Button Attendance
           System.out.println("Add Button Pressed");
-        membership.coaches.get(Integer.parseInt(idTxt.getText())).add(nameTxt.getText(),phoneTxt.getText(),"false",addressTxt.getText());
+        for(int i = Integer.parseInt(idTxt.getText());i < 12;i++)
+        {
+        membership.coaches.get(i).add(nameTxt.getText(),phoneTxt.getText(),"false",addressTxt.getText());
+        }
+        FeedBackFrame feedBackFrame = new FeedBackFrame("Member has been added to Sessions " +idTxt.getText() + " to 11");
+        feedBackFrame.setLocationRelativeTo(null);
+        feedBackFrame.setVisible(true);
         TreasurerLoginFrame treasurerLoginFrame = new TreasurerLoginFrame(membership);
         dispose(); 
        }

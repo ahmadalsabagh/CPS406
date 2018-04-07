@@ -33,6 +33,7 @@ public class TreasurerFrame extends javax.swing.JFrame {
       logoutBtn.addActionListener(new LogoutAction());
         invoiceBtn = new javax.swing.JButton();
         memStatBtn = new javax.swing.JButton();
+        
         debtStatBtn = new javax.swing.JButton();
         treasurerLbl = new javax.swing.JLabel();
 
@@ -43,8 +44,8 @@ public class TreasurerFrame extends javax.swing.JFrame {
         invoiceBtn.setText("Session Invoice");
         invoiceBtn.addActionListener(new launchInvoice());
 
-        memStatBtn.setText("Member Status");
-        memStatBtn.addActionListener(new launchMemStat());
+        memStatBtn.setText("CreateFees");
+        memStatBtn.addActionListener(new CreateFeeAction());
 
         debtStatBtn.setText("Debt Status");
         debtStatBtn.addActionListener(new launchDebtStat());
@@ -89,6 +90,7 @@ public class TreasurerFrame extends javax.swing.JFrame {
                 .addComponent(debtStatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 28, Short.MAX_VALUE))
         );
+        debtStatBtn.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,7 +144,7 @@ public class TreasurerFrame extends javax.swing.JFrame {
     }
     
 }
-    private class launchMemStat implements ActionListener {
+    private class CreateFeeAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
        
           System.out.println("Member Status");
